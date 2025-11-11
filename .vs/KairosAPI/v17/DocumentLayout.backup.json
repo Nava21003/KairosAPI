@@ -1,74 +1,81 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\del_o\\Desktop\\UTL\\Ingenieria\\10\u00B0\\PROYECTO KAIROS\\KairosAPI\\",
+  "WorkspaceRootPath": "C:\\Users\\Angel\\Desktop\\10- Decimo Semestre\\Proyecto\\KairosAPI\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{98671CF5-AC79-4443-939C-6565C2E09F68}|KairosAPI\\KairosAPI.csproj|c:\\users\\del_o\\desktop\\utl\\ingenieria\\10\u00B0\\proyecto kairos\\kairosapi\\kairosapi\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
-      "RelativeMoniker": "D:0:0:{98671CF5-AC79-4443-939C-6565C2E09F68}|KairosAPI\\KairosAPI.csproj|solutionrelative:kairosapi\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+      "AbsoluteMoniker": "D:0:0:{98671CF5-AC79-4443-939C-6565C2E09F68}|KairosAPI\\KairosAPI.csproj|c:\\users\\angel\\desktop\\10- decimo semestre\\proyecto\\kairosapi\\kairosapi\\kairosapi.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{98671CF5-AC79-4443-939C-6565C2E09F68}|KairosAPI\\KairosAPI.csproj|solutionrelative:kairosapi\\kairosapi.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{98671CF5-AC79-4443-939C-6565C2E09F68}|KairosAPI\\KairosAPI.csproj|c:\\users\\del_o\\desktop\\utl\\ingenieria\\10\u00B0\\proyecto kairos\\kairosapi\\kairosapi\\models\\token.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{98671CF5-AC79-4443-939C-6565C2E09F68}|KairosAPI\\KairosAPI.csproj|solutionrelative:kairosapi\\models\\token.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{98671CF5-AC79-4443-939C-6565C2E09F68}|KairosAPI\\KairosAPI.csproj|c:\\users\\del_o\\desktop\\utl\\ingenieria\\10\u00B0\\proyecto kairos\\kairosapi\\kairosapi\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{98671CF5-AC79-4443-939C-6565C2E09F68}|KairosAPI\\KairosAPI.csproj|solutionrelative:kairosapi\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{98671CF5-AC79-4443-939C-6565C2E09F68}|KairosAPI\\KairosAPI.csproj|c:\\users\\del_o\\desktop\\utl\\ingenieria\\10\u00B0\\proyecto kairos\\kairosapi\\kairosapi\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{98671CF5-AC79-4443-939C-6565C2E09F68}|KairosAPI\\KairosAPI.csproj|solutionrelative:kairosapi\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{98671CF5-AC79-4443-939C-6565C2E09F68}|KairosAPI\\KairosAPI.csproj|c:\\users\\del_o\\desktop\\utl\\ingenieria\\10\u00B0\\proyecto kairos\\kairosapi\\kairosapi\\models\\usuario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{98671CF5-AC79-4443-939C-6565C2E09F68}|KairosAPI\\KairosAPI.csproj|solutionrelative:kairosapi\\models\\usuario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{98671CF5-AC79-4443-939C-6565C2E09F68}|KairosAPI\\KairosAPI.csproj|c:\\users\\del_o\\desktop\\utl\\ingenieria\\10\u00B0\\proyecto kairos\\kairosapi\\kairosapi\\data\\appdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{98671CF5-AC79-4443-939C-6565C2E09F68}|KairosAPI\\KairosAPI.csproj|solutionrelative:kairosapi\\data\\appdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{98671CF5-AC79-4443-939C-6565C2E09F68}|KairosAPI\\KairosAPI.csproj|c:\\users\\del_o\\desktop\\utl\\ingenieria\\10\u00B0\\proyecto kairos\\kairosapi\\kairosapi\\models\\role.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{98671CF5-AC79-4443-939C-6565C2E09F68}|KairosAPI\\KairosAPI.csproj|solutionrelative:kairosapi\\models\\role.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{98671CF5-AC79-4443-939C-6565C2E09F68}|KairosAPI\\KairosAPI.csproj|c:\\users\\del_o\\desktop\\utl\\ingenieria\\10\u00B0\\proyecto kairos\\kairosapi\\kairosapi\\controllers\\usuarioscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{98671CF5-AC79-4443-939C-6565C2E09F68}|KairosAPI\\KairosAPI.csproj|solutionrelative:kairosapi\\controllers\\usuarioscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{98671CF5-AC79-4443-939C-6565C2E09F68}|KairosAPI\\KairosAPI.csproj|c:\\users\\del_o\\desktop\\utl\\ingenieria\\10\u00B0\\proyecto kairos\\kairosapi\\kairosapi\\controllers\\notificacionescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{98671CF5-AC79-4443-939C-6565C2E09F68}|KairosAPI\\KairosAPI.csproj|solutionrelative:kairosapi\\controllers\\notificacionescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{98671CF5-AC79-4443-939C-6565C2E09F68}|KairosAPI\\KairosAPI.csproj|c:\\users\\del_o\\desktop\\utl\\ingenieria\\10\u00B0\\proyecto kairos\\kairosapi\\kairosapi\\controllers\\categoriascontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{98671CF5-AC79-4443-939C-6565C2E09F68}|KairosAPI\\KairosAPI.csproj|solutionrelative:kairosapi\\controllers\\categoriascontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{98671CF5-AC79-4443-939C-6565C2E09F68}|KairosAPI\\KairosAPI.csproj|c:\\users\\del_o\\desktop\\utl\\ingenieria\\10\u00B0\\proyecto kairos\\kairosapi\\kairosapi\\controllers\\actividadescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{98671CF5-AC79-4443-939C-6565C2E09F68}|KairosAPI\\KairosAPI.csproj|solutionrelative:kairosapi\\controllers\\actividadescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{98671CF5-AC79-4443-939C-6565C2E09F68}|KairosAPI\\KairosAPI.csproj|c:\\users\\del_o\\desktop\\utl\\ingenieria\\10\u00B0\\proyecto kairos\\kairosapi\\kairosapi\\controllers\\rutascontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{98671CF5-AC79-4443-939C-6565C2E09F68}|KairosAPI\\KairosAPI.csproj|solutionrelative:kairosapi\\controllers\\rutascontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{98671CF5-AC79-4443-939C-6565C2E09F68}|KairosAPI\\KairosAPI.csproj|c:\\users\\del_o\\desktop\\utl\\ingenieria\\10\u00B0\\proyecto kairos\\kairosapi\\kairosapi\\controllers\\promocionescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{98671CF5-AC79-4443-939C-6565C2E09F68}|KairosAPI\\KairosAPI.csproj|solutionrelative:kairosapi\\controllers\\promocionescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{98671CF5-AC79-4443-939C-6565C2E09F68}|KairosAPI\\KairosAPI.csproj|c:\\users\\del_o\\desktop\\utl\\ingenieria\\10\u00B0\\proyecto kairos\\kairosapi\\kairosapi\\controllers\\usodigitalcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{98671CF5-AC79-4443-939C-6565C2E09F68}|KairosAPI\\KairosAPI.csproj|c:\\users\\angel\\desktop\\10- decimo semestre\\proyecto\\kairosapi\\kairosapi\\controllers\\usodigitalcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{98671CF5-AC79-4443-939C-6565C2E09F68}|KairosAPI\\KairosAPI.csproj|solutionrelative:kairosapi\\controllers\\usodigitalcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{98671CF5-AC79-4443-939C-6565C2E09F68}|KairosAPI\\KairosAPI.csproj|c:\\users\\del_o\\desktop\\utl\\ingenieria\\10\u00B0\\proyecto kairos\\kairosapi\\kairosapi\\controllers\\tokenscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{98671CF5-AC79-4443-939C-6565C2E09F68}|KairosAPI\\KairosAPI.csproj|c:\\users\\angel\\desktop\\10- decimo semestre\\proyecto\\kairosapi\\kairosapi\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{98671CF5-AC79-4443-939C-6565C2E09F68}|KairosAPI\\KairosAPI.csproj|solutionrelative:kairosapi\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Program Files\\dotnet\\sdk\\9.0.305\\Sdks\\Microsoft.NET.Sdk\\targets\\Microsoft.PackageDependencyResolution.targets||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{98671CF5-AC79-4443-939C-6565C2E09F68}|KairosAPI\\KairosAPI.csproj|c:\\users\\angel\\desktop\\10- decimo semestre\\proyecto\\kairosapi\\kairosapi\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{98671CF5-AC79-4443-939C-6565C2E09F68}|KairosAPI\\KairosAPI.csproj|solutionrelative:kairosapi\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{98671CF5-AC79-4443-939C-6565C2E09F68}|KairosAPI\\KairosAPI.csproj|c:\\users\\angel\\desktop\\10- decimo semestre\\proyecto\\kairosapi\\kairosapi\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{98671CF5-AC79-4443-939C-6565C2E09F68}|KairosAPI\\KairosAPI.csproj|solutionrelative:kairosapi\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{98671CF5-AC79-4443-939C-6565C2E09F68}|KairosAPI\\KairosAPI.csproj|c:\\users\\angel\\desktop\\10- decimo semestre\\proyecto\\kairosapi\\kairosapi\\models\\token.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{98671CF5-AC79-4443-939C-6565C2E09F68}|KairosAPI\\KairosAPI.csproj|solutionrelative:kairosapi\\models\\token.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{98671CF5-AC79-4443-939C-6565C2E09F68}|KairosAPI\\KairosAPI.csproj|c:\\users\\angel\\desktop\\10- decimo semestre\\proyecto\\kairosapi\\kairosapi\\models\\role.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{98671CF5-AC79-4443-939C-6565C2E09F68}|KairosAPI\\KairosAPI.csproj|solutionrelative:kairosapi\\models\\role.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{98671CF5-AC79-4443-939C-6565C2E09F68}|KairosAPI\\KairosAPI.csproj|c:\\users\\angel\\desktop\\10- decimo semestre\\proyecto\\kairosapi\\kairosapi\\models\\usuario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{98671CF5-AC79-4443-939C-6565C2E09F68}|KairosAPI\\KairosAPI.csproj|solutionrelative:kairosapi\\models\\usuario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{98671CF5-AC79-4443-939C-6565C2E09F68}|KairosAPI\\KairosAPI.csproj|c:\\users\\angel\\desktop\\10- decimo semestre\\proyecto\\kairosapi\\kairosapi\\data\\appdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{98671CF5-AC79-4443-939C-6565C2E09F68}|KairosAPI\\KairosAPI.csproj|solutionrelative:kairosapi\\data\\appdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{98671CF5-AC79-4443-939C-6565C2E09F68}|KairosAPI\\KairosAPI.csproj|c:\\users\\angel\\desktop\\10- decimo semestre\\proyecto\\kairosapi\\kairosapi\\controllers\\usuarioscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{98671CF5-AC79-4443-939C-6565C2E09F68}|KairosAPI\\KairosAPI.csproj|solutionrelative:kairosapi\\controllers\\usuarioscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{98671CF5-AC79-4443-939C-6565C2E09F68}|KairosAPI\\KairosAPI.csproj|c:\\users\\angel\\desktop\\10- decimo semestre\\proyecto\\kairosapi\\kairosapi\\controllers\\tokenscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{98671CF5-AC79-4443-939C-6565C2E09F68}|KairosAPI\\KairosAPI.csproj|solutionrelative:kairosapi\\controllers\\tokenscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{98671CF5-AC79-4443-939C-6565C2E09F68}|KairosAPI\\KairosAPI.csproj|c:\\users\\del_o\\desktop\\utl\\ingenieria\\10\u00B0\\proyecto kairos\\kairosapi\\kairosapi\\controllers\\rolescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{98671CF5-AC79-4443-939C-6565C2E09F68}|KairosAPI\\KairosAPI.csproj|c:\\users\\angel\\desktop\\10- decimo semestre\\proyecto\\kairosapi\\kairosapi\\controllers\\rutascontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{98671CF5-AC79-4443-939C-6565C2E09F68}|KairosAPI\\KairosAPI.csproj|solutionrelative:kairosapi\\controllers\\rutascontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{98671CF5-AC79-4443-939C-6565C2E09F68}|KairosAPI\\KairosAPI.csproj|c:\\users\\angel\\desktop\\10- decimo semestre\\proyecto\\kairosapi\\kairosapi\\controllers\\rolescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{98671CF5-AC79-4443-939C-6565C2E09F68}|KairosAPI\\KairosAPI.csproj|solutionrelative:kairosapi\\controllers\\rolescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{98671CF5-AC79-4443-939C-6565C2E09F68}|KairosAPI\\KairosAPI.csproj|c:\\users\\del_o\\desktop\\utl\\ingenieria\\10\u00B0\\proyecto kairos\\kairosapi\\kairosapi\\controllers\\lugarescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{98671CF5-AC79-4443-939C-6565C2E09F68}|KairosAPI\\KairosAPI.csproj|c:\\users\\angel\\desktop\\10- decimo semestre\\proyecto\\kairosapi\\kairosapi\\controllers\\promocionescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{98671CF5-AC79-4443-939C-6565C2E09F68}|KairosAPI\\KairosAPI.csproj|solutionrelative:kairosapi\\controllers\\promocionescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{98671CF5-AC79-4443-939C-6565C2E09F68}|KairosAPI\\KairosAPI.csproj|c:\\users\\angel\\desktop\\10- decimo semestre\\proyecto\\kairosapi\\kairosapi\\controllers\\notificacionescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{98671CF5-AC79-4443-939C-6565C2E09F68}|KairosAPI\\KairosAPI.csproj|solutionrelative:kairosapi\\controllers\\notificacionescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{98671CF5-AC79-4443-939C-6565C2E09F68}|KairosAPI\\KairosAPI.csproj|c:\\users\\angel\\desktop\\10- decimo semestre\\proyecto\\kairosapi\\kairosapi\\controllers\\lugarescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{98671CF5-AC79-4443-939C-6565C2E09F68}|KairosAPI\\KairosAPI.csproj|solutionrelative:kairosapi\\controllers\\lugarescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{98671CF5-AC79-4443-939C-6565C2E09F68}|KairosAPI\\KairosAPI.csproj|c:\\users\\angel\\desktop\\10- decimo semestre\\proyecto\\kairosapi\\kairosapi\\controllers\\categoriascontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{98671CF5-AC79-4443-939C-6565C2E09F68}|KairosAPI\\KairosAPI.csproj|solutionrelative:kairosapi\\controllers\\categoriascontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{98671CF5-AC79-4443-939C-6565C2E09F68}|KairosAPI\\KairosAPI.csproj|c:\\users\\angel\\desktop\\10- decimo semestre\\proyecto\\kairosapi\\kairosapi\\controllers\\actividadescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{98671CF5-AC79-4443-939C-6565C2E09F68}|KairosAPI\\KairosAPI.csproj|solutionrelative:kairosapi\\controllers\\actividadescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -78,8 +85,12 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 4,
           "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
+            },
             {
               "$type": "Bookmark",
               "Name": "ST:128:0:{75188d03-9892-4ae2-abf1-207126247ce5}"
@@ -95,62 +106,85 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "appsettings.json",
-              "DocumentMoniker": "C:\\Users\\del_o\\Desktop\\UTL\\Ingenieria\\10\u00B0\\PROYECTO KAIROS\\KairosAPI\\KairosAPI\\appsettings.json",
-              "RelativeDocumentMoniker": "KairosAPI\\appsettings.json",
-              "ToolTip": "C:\\Users\\del_o\\Desktop\\UTL\\Ingenieria\\10\u00B0\\PROYECTO KAIROS\\KairosAPI\\KairosAPI\\appsettings.json",
-              "RelativeToolTip": "KairosAPI\\appsettings.json",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2025-11-04T09:09:35.253Z",
+              "Title": "KairosAPI",
+              "DocumentMoniker": "C:\\Users\\Angel\\Desktop\\10- Decimo Semestre\\Proyecto\\KairosAPI\\KairosAPI\\KairosAPI.csproj",
+              "RelativeDocumentMoniker": "KairosAPI\\KairosAPI.csproj",
+              "ToolTip": "C:\\Users\\Angel\\Desktop\\10- Decimo Semestre\\Proyecto\\KairosAPI\\KairosAPI\\KairosAPI.csproj",
+              "RelativeToolTip": "KairosAPI\\KairosAPI.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2025-11-10T23:42:23.371Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 3,
+              "Title": "Microsoft.PackageDependencyResolution.targets",
+              "DocumentMoniker": "C:\\Program Files\\dotnet\\sdk\\9.0.305\\Sdks\\Microsoft.NET.Sdk\\targets\\Microsoft.PackageDependencyResolution.targets",
+              "RelativeDocumentMoniker": "..\\..\\..\\..\\..\\..\\Program Files\\dotnet\\sdk\\9.0.305\\Sdks\\Microsoft.NET.Sdk\\targets\\Microsoft.PackageDependencyResolution.targets",
+              "ToolTip": "C:\\Program Files\\dotnet\\sdk\\9.0.305\\Sdks\\Microsoft.NET.Sdk\\targets\\Microsoft.PackageDependencyResolution.targets",
+              "RelativeToolTip": "..\\..\\..\\..\\..\\..\\Program Files\\dotnet\\sdk\\9.0.305\\Sdks\\Microsoft.NET.Sdk\\targets\\Microsoft.PackageDependencyResolution.targets",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkBAAAEAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003801|",
+              "WhenOpened": "2025-11-08T16:54:23.719Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\Users\\Angel\\Desktop\\10- Decimo Semestre\\Proyecto\\KairosAPI\\KairosAPI\\appsettings.json",
+              "RelativeDocumentMoniker": "KairosAPI\\appsettings.json",
+              "ToolTip": "C:\\Users\\Angel\\Desktop\\10- Decimo Semestre\\Proyecto\\KairosAPI\\KairosAPI\\appsettings.json",
+              "RelativeToolTip": "KairosAPI\\appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-11-04T09:09:35.253Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
               "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\del_o\\Desktop\\UTL\\Ingenieria\\10\u00B0\\PROYECTO KAIROS\\KairosAPI\\KairosAPI\\Program.cs",
+              "DocumentMoniker": "C:\\Users\\Angel\\Desktop\\10- Decimo Semestre\\Proyecto\\KairosAPI\\KairosAPI\\Program.cs",
               "RelativeDocumentMoniker": "KairosAPI\\Program.cs",
-              "ToolTip": "C:\\Users\\del_o\\Desktop\\UTL\\Ingenieria\\10\u00B0\\PROYECTO KAIROS\\KairosAPI\\KairosAPI\\Program.cs",
+              "ToolTip": "C:\\Users\\Angel\\Desktop\\10- Decimo Semestre\\Proyecto\\KairosAPI\\KairosAPI\\Program.cs",
               "RelativeToolTip": "KairosAPI\\Program.cs",
               "ViewState": "AgIAAFAAAAAAAAAAAAAowGoAAAAKAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-04T08:01:12.66Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-04T08:01:12.66Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
               "Title": "AuthController.cs",
-              "DocumentMoniker": "C:\\Users\\del_o\\Desktop\\UTL\\Ingenieria\\10\u00B0\\PROYECTO KAIROS\\KairosAPI\\KairosAPI\\Controllers\\AuthController.cs",
+              "DocumentMoniker": "C:\\Users\\Angel\\Desktop\\10- Decimo Semestre\\Proyecto\\KairosAPI\\KairosAPI\\Controllers\\AuthController.cs",
               "RelativeDocumentMoniker": "KairosAPI\\Controllers\\AuthController.cs",
-              "ToolTip": "C:\\Users\\del_o\\Desktop\\UTL\\Ingenieria\\10\u00B0\\PROYECTO KAIROS\\KairosAPI\\KairosAPI\\Controllers\\AuthController.cs",
+              "ToolTip": "C:\\Users\\Angel\\Desktop\\10- Decimo Semestre\\Proyecto\\KairosAPI\\KairosAPI\\Controllers\\AuthController.cs",
               "RelativeToolTip": "KairosAPI\\Controllers\\AuthController.cs",
-              "ViewState": "AgIAAIAAAAAAAAAAAAAYwJcAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAJcAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-11-04T09:33:44.658Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 6,
               "Title": "Token.cs",
-              "DocumentMoniker": "C:\\Users\\del_o\\Desktop\\UTL\\Ingenieria\\10\u00B0\\PROYECTO KAIROS\\KairosAPI\\KairosAPI\\Models\\Token.cs",
+              "DocumentMoniker": "C:\\Users\\Angel\\Desktop\\10- Decimo Semestre\\Proyecto\\KairosAPI\\KairosAPI\\Models\\Token.cs",
               "RelativeDocumentMoniker": "KairosAPI\\Models\\Token.cs",
-              "ToolTip": "C:\\Users\\del_o\\Desktop\\UTL\\Ingenieria\\10\u00B0\\PROYECTO KAIROS\\KairosAPI\\KairosAPI\\Models\\Token.cs",
+              "ToolTip": "C:\\Users\\Angel\\Desktop\\10- Decimo Semestre\\Proyecto\\KairosAPI\\KairosAPI\\Models\\Token.cs",
               "RelativeToolTip": "KairosAPI\\Models\\Token.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-04T09:38:46.081Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-04T09:38:46.081Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 7,
               "Title": "Role.cs",
-              "DocumentMoniker": "C:\\Users\\del_o\\Desktop\\UTL\\Ingenieria\\10\u00B0\\PROYECTO KAIROS\\KairosAPI\\KairosAPI\\Models\\Role.cs",
+              "DocumentMoniker": "C:\\Users\\Angel\\Desktop\\10- Decimo Semestre\\Proyecto\\KairosAPI\\KairosAPI\\Models\\Role.cs",
               "RelativeDocumentMoniker": "KairosAPI\\Models\\Role.cs",
-              "ToolTip": "C:\\Users\\del_o\\Desktop\\UTL\\Ingenieria\\10\u00B0\\PROYECTO KAIROS\\KairosAPI\\KairosAPI\\Models\\Role.cs",
+              "ToolTip": "C:\\Users\\Angel\\Desktop\\10- Decimo Semestre\\Proyecto\\KairosAPI\\KairosAPI\\Models\\Role.cs",
               "RelativeToolTip": "KairosAPI\\Models\\Role.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -158,85 +192,84 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 8,
               "Title": "Usuario.cs",
-              "DocumentMoniker": "C:\\Users\\del_o\\Desktop\\UTL\\Ingenieria\\10\u00B0\\PROYECTO KAIROS\\KairosAPI\\KairosAPI\\Models\\Usuario.cs",
+              "DocumentMoniker": "C:\\Users\\Angel\\Desktop\\10- Decimo Semestre\\Proyecto\\KairosAPI\\KairosAPI\\Models\\Usuario.cs",
               "RelativeDocumentMoniker": "KairosAPI\\Models\\Usuario.cs",
-              "ToolTip": "C:\\Users\\del_o\\Desktop\\UTL\\Ingenieria\\10\u00B0\\PROYECTO KAIROS\\KairosAPI\\KairosAPI\\Models\\Usuario.cs",
+              "ToolTip": "C:\\Users\\Angel\\Desktop\\10- Decimo Semestre\\Proyecto\\KairosAPI\\KairosAPI\\Models\\Usuario.cs",
               "RelativeToolTip": "KairosAPI\\Models\\Usuario.cs",
               "ViewState": "AgIAABMAAAAAAAAAAAA2wB4AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-04T09:38:03.749Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-04T09:38:03.749Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 9,
               "Title": "AppDbContext.cs",
-              "DocumentMoniker": "C:\\Users\\del_o\\Desktop\\UTL\\Ingenieria\\10\u00B0\\PROYECTO KAIROS\\KairosAPI\\KairosAPI\\Data\\AppDbContext.cs",
+              "DocumentMoniker": "C:\\Users\\Angel\\Desktop\\10- Decimo Semestre\\Proyecto\\KairosAPI\\KairosAPI\\Data\\AppDbContext.cs",
               "RelativeDocumentMoniker": "KairosAPI\\Data\\AppDbContext.cs",
-              "ToolTip": "C:\\Users\\del_o\\Desktop\\UTL\\Ingenieria\\10\u00B0\\PROYECTO KAIROS\\KairosAPI\\KairosAPI\\Data\\AppDbContext.cs",
+              "ToolTip": "C:\\Users\\Angel\\Desktop\\10- Decimo Semestre\\Proyecto\\KairosAPI\\KairosAPI\\Data\\AppDbContext.cs",
               "RelativeToolTip": "KairosAPI\\Data\\AppDbContext.cs",
               "ViewState": "AgIAACYAAAAAAAAAAIA3wDYAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-04T09:30:45.391Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-04T09:30:45.391Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 10,
               "Title": "UsuariosController.cs",
-              "DocumentMoniker": "C:\\Users\\del_o\\Desktop\\UTL\\Ingenieria\\10\u00B0\\PROYECTO KAIROS\\KairosAPI\\KairosAPI\\Controllers\\UsuariosController.cs",
+              "DocumentMoniker": "C:\\Users\\Angel\\Desktop\\10- Decimo Semestre\\Proyecto\\KairosAPI\\KairosAPI\\Controllers\\UsuariosController.cs",
               "RelativeDocumentMoniker": "KairosAPI\\Controllers\\UsuariosController.cs",
-              "ToolTip": "C:\\Users\\del_o\\Desktop\\UTL\\Ingenieria\\10\u00B0\\PROYECTO KAIROS\\KairosAPI\\KairosAPI\\Controllers\\UsuariosController.cs",
+              "ToolTip": "C:\\Users\\Angel\\Desktop\\10- Decimo Semestre\\Proyecto\\KairosAPI\\KairosAPI\\Controllers\\UsuariosController.cs",
               "RelativeToolTip": "KairosAPI\\Controllers\\UsuariosController.cs",
-              "ViewState": "AgIAACcAAAAAAAAAAAAUwEgAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAEgAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-11-04T06:48:59.461Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 1,
               "Title": "UsoDigitalController.cs",
-              "DocumentMoniker": "C:\\Users\\del_o\\Desktop\\UTL\\Ingenieria\\10\u00B0\\PROYECTO KAIROS\\KairosAPI\\KairosAPI\\Controllers\\UsoDigitalController.cs",
+              "DocumentMoniker": "C:\\Users\\Angel\\Desktop\\10- Decimo Semestre\\Proyecto\\KairosAPI\\KairosAPI\\Controllers\\UsoDigitalController.cs",
               "RelativeDocumentMoniker": "KairosAPI\\Controllers\\UsoDigitalController.cs",
-              "ToolTip": "C:\\Users\\del_o\\Desktop\\UTL\\Ingenieria\\10\u00B0\\PROYECTO KAIROS\\KairosAPI\\KairosAPI\\Controllers\\UsoDigitalController.cs",
+              "ToolTip": "C:\\Users\\Angel\\Desktop\\10- Decimo Semestre\\Proyecto\\KairosAPI\\KairosAPI\\Controllers\\UsoDigitalController.cs",
               "RelativeToolTip": "KairosAPI\\Controllers\\UsoDigitalController.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-04T06:48:58.526Z"
+              "WhenOpened": "2025-11-04T06:48:58.526Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
+              "DocumentIndex": 11,
               "Title": "TokensController.cs",
-              "DocumentMoniker": "C:\\Users\\del_o\\Desktop\\UTL\\Ingenieria\\10\u00B0\\PROYECTO KAIROS\\KairosAPI\\KairosAPI\\Controllers\\TokensController.cs",
+              "DocumentMoniker": "C:\\Users\\Angel\\Desktop\\10- Decimo Semestre\\Proyecto\\KairosAPI\\KairosAPI\\Controllers\\TokensController.cs",
               "RelativeDocumentMoniker": "KairosAPI\\Controllers\\TokensController.cs",
-              "ToolTip": "C:\\Users\\del_o\\Desktop\\UTL\\Ingenieria\\10\u00B0\\PROYECTO KAIROS\\KairosAPI\\KairosAPI\\Controllers\\TokensController.cs",
+              "ToolTip": "C:\\Users\\Angel\\Desktop\\10- Decimo Semestre\\Proyecto\\KairosAPI\\KairosAPI\\Controllers\\TokensController.cs",
               "RelativeToolTip": "KairosAPI\\Controllers\\TokensController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAEAAAAXAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-11-04T06:48:57.792Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 12,
               "Title": "RutasController.cs",
-              "DocumentMoniker": "C:\\Users\\del_o\\Desktop\\UTL\\Ingenieria\\10\u00B0\\PROYECTO KAIROS\\KairosAPI\\KairosAPI\\Controllers\\RutasController.cs",
+              "DocumentMoniker": "C:\\Users\\Angel\\Desktop\\10- Decimo Semestre\\Proyecto\\KairosAPI\\KairosAPI\\Controllers\\RutasController.cs",
               "RelativeDocumentMoniker": "KairosAPI\\Controllers\\RutasController.cs",
-              "ToolTip": "C:\\Users\\del_o\\Desktop\\UTL\\Ingenieria\\10\u00B0\\PROYECTO KAIROS\\KairosAPI\\KairosAPI\\Controllers\\RutasController.cs",
+              "ToolTip": "C:\\Users\\Angel\\Desktop\\10- Decimo Semestre\\Proyecto\\KairosAPI\\KairosAPI\\Controllers\\RutasController.cs",
               "RelativeToolTip": "KairosAPI\\Controllers\\RutasController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAARAAAAAAAAAA==",
+              "ViewState": "AgIAAEMAAAAAAAAAAAAAABcAAAA0AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-11-04T06:48:57.102Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 15,
+              "DocumentIndex": 13,
               "Title": "RolesController.cs",
-              "DocumentMoniker": "C:\\Users\\del_o\\Desktop\\UTL\\Ingenieria\\10\u00B0\\PROYECTO KAIROS\\KairosAPI\\KairosAPI\\Controllers\\RolesController.cs",
+              "DocumentMoniker": "C:\\Users\\Angel\\Desktop\\10- Decimo Semestre\\Proyecto\\KairosAPI\\KairosAPI\\Controllers\\RolesController.cs",
               "RelativeDocumentMoniker": "KairosAPI\\Controllers\\RolesController.cs",
-              "ToolTip": "C:\\Users\\del_o\\Desktop\\UTL\\Ingenieria\\10\u00B0\\PROYECTO KAIROS\\KairosAPI\\KairosAPI\\Controllers\\RolesController.cs",
+              "ToolTip": "C:\\Users\\Angel\\Desktop\\10- Decimo Semestre\\Proyecto\\KairosAPI\\KairosAPI\\Controllers\\RolesController.cs",
               "RelativeToolTip": "KairosAPI\\Controllers\\RolesController.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -244,11 +277,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 14,
               "Title": "PromocionesController.cs",
-              "DocumentMoniker": "C:\\Users\\del_o\\Desktop\\UTL\\Ingenieria\\10\u00B0\\PROYECTO KAIROS\\KairosAPI\\KairosAPI\\Controllers\\PromocionesController.cs",
+              "DocumentMoniker": "C:\\Users\\Angel\\Desktop\\10- Decimo Semestre\\Proyecto\\KairosAPI\\KairosAPI\\Controllers\\PromocionesController.cs",
               "RelativeDocumentMoniker": "KairosAPI\\Controllers\\PromocionesController.cs",
-              "ToolTip": "C:\\Users\\del_o\\Desktop\\UTL\\Ingenieria\\10\u00B0\\PROYECTO KAIROS\\KairosAPI\\KairosAPI\\Controllers\\PromocionesController.cs",
+              "ToolTip": "C:\\Users\\Angel\\Desktop\\10- Decimo Semestre\\Proyecto\\KairosAPI\\KairosAPI\\Controllers\\PromocionesController.cs",
               "RelativeToolTip": "KairosAPI\\Controllers\\PromocionesController.cs",
               "ViewState": "AgIAADIAAAAAAAAAAAAqwBoAAAAZAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -256,11 +289,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 15,
               "Title": "NotificacionesController.cs",
-              "DocumentMoniker": "C:\\Users\\del_o\\Desktop\\UTL\\Ingenieria\\10\u00B0\\PROYECTO KAIROS\\KairosAPI\\KairosAPI\\Controllers\\NotificacionesController.cs",
+              "DocumentMoniker": "C:\\Users\\Angel\\Desktop\\10- Decimo Semestre\\Proyecto\\KairosAPI\\KairosAPI\\Controllers\\NotificacionesController.cs",
               "RelativeDocumentMoniker": "KairosAPI\\Controllers\\NotificacionesController.cs",
-              "ToolTip": "C:\\Users\\del_o\\Desktop\\UTL\\Ingenieria\\10\u00B0\\PROYECTO KAIROS\\KairosAPI\\KairosAPI\\Controllers\\NotificacionesController.cs",
+              "ToolTip": "C:\\Users\\Angel\\Desktop\\10- Decimo Semestre\\Proyecto\\KairosAPI\\KairosAPI\\Controllers\\NotificacionesController.cs",
               "RelativeToolTip": "KairosAPI\\Controllers\\NotificacionesController.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -270,9 +303,9 @@
               "$type": "Document",
               "DocumentIndex": 16,
               "Title": "LugaresController.cs",
-              "DocumentMoniker": "C:\\Users\\del_o\\Desktop\\UTL\\Ingenieria\\10\u00B0\\PROYECTO KAIROS\\KairosAPI\\KairosAPI\\Controllers\\LugaresController.cs",
+              "DocumentMoniker": "C:\\Users\\Angel\\Desktop\\10- Decimo Semestre\\Proyecto\\KairosAPI\\KairosAPI\\Controllers\\LugaresController.cs",
               "RelativeDocumentMoniker": "KairosAPI\\Controllers\\LugaresController.cs",
-              "ToolTip": "C:\\Users\\del_o\\Desktop\\UTL\\Ingenieria\\10\u00B0\\PROYECTO KAIROS\\KairosAPI\\KairosAPI\\Controllers\\LugaresController.cs",
+              "ToolTip": "C:\\Users\\Angel\\Desktop\\10- Decimo Semestre\\Proyecto\\KairosAPI\\KairosAPI\\Controllers\\LugaresController.cs",
               "RelativeToolTip": "KairosAPI\\Controllers\\LugaresController.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -280,11 +313,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 17,
               "Title": "CategoriasController.cs",
-              "DocumentMoniker": "C:\\Users\\del_o\\Desktop\\UTL\\Ingenieria\\10\u00B0\\PROYECTO KAIROS\\KairosAPI\\KairosAPI\\Controllers\\CategoriasController.cs",
+              "DocumentMoniker": "C:\\Users\\Angel\\Desktop\\10- Decimo Semestre\\Proyecto\\KairosAPI\\KairosAPI\\Controllers\\CategoriasController.cs",
               "RelativeDocumentMoniker": "KairosAPI\\Controllers\\CategoriasController.cs",
-              "ToolTip": "C:\\Users\\del_o\\Desktop\\UTL\\Ingenieria\\10\u00B0\\PROYECTO KAIROS\\KairosAPI\\KairosAPI\\Controllers\\CategoriasController.cs",
+              "ToolTip": "C:\\Users\\Angel\\Desktop\\10- Decimo Semestre\\Proyecto\\KairosAPI\\KairosAPI\\Controllers\\CategoriasController.cs",
               "RelativeToolTip": "KairosAPI\\Controllers\\CategoriasController.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -292,11 +325,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 18,
               "Title": "ActividadesController.cs",
-              "DocumentMoniker": "C:\\Users\\del_o\\Desktop\\UTL\\Ingenieria\\10\u00B0\\PROYECTO KAIROS\\KairosAPI\\KairosAPI\\Controllers\\ActividadesController.cs",
+              "DocumentMoniker": "C:\\Users\\Angel\\Desktop\\10- Decimo Semestre\\Proyecto\\KairosAPI\\KairosAPI\\Controllers\\ActividadesController.cs",
               "RelativeDocumentMoniker": "KairosAPI\\Controllers\\ActividadesController.cs",
-              "ToolTip": "C:\\Users\\del_o\\Desktop\\UTL\\Ingenieria\\10\u00B0\\PROYECTO KAIROS\\KairosAPI\\KairosAPI\\Controllers\\ActividadesController.cs",
+              "ToolTip": "C:\\Users\\Angel\\Desktop\\10- Decimo Semestre\\Proyecto\\KairosAPI\\KairosAPI\\Controllers\\ActividadesController.cs",
               "RelativeToolTip": "KairosAPI\\Controllers\\ActividadesController.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",

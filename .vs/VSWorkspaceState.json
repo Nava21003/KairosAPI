@@ -5,6 +5,6 @@
     "\\KairosAPI\\Controllers",
     "\\KairosAPI\\Models"
   ],
-  "SelectedNode": "\\KairosAPI\\Controllers\\TokensController.cs",
+  "SelectedNode": "\\KairosAPI\\Controllers\\UsuariosController.cs",
   "PreviewInSolutionExplorer": false
 }

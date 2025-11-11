@@ -374,3 +374,4 @@ C:\Users\del_o\Desktop\UTL\Ingenieria\10°\PROYECTO KAIROS\KairosAPI\KairosAPI\o
 C:\Users\del_o\Desktop\UTL\Ingenieria\10°\PROYECTO KAIROS\KairosAPI\KairosAPI\obj\Debug\net9.0\KairosAPI.pdb
 C:\Users\del_o\Desktop\UTL\Ingenieria\10°\PROYECTO KAIROS\KairosAPI\KairosAPI\obj\Debug\net9.0\KairosAPI.genruntimeconfig.cache
 C:\Users\del_o\Desktop\UTL\Ingenieria\10°\PROYECTO KAIROS\KairosAPI\KairosAPI\obj\Debug\net9.0\ref\KairosAPI.dll
+C:\Users\Angel\Desktop\10- Decimo Semestre\Proyecto\KairosAPI\KairosAPI\obj\Debug\net9.0\KairosAPI.sourcelink.json
