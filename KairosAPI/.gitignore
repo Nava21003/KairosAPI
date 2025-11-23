@@ -1,0 +1,5 @@
+# Básico de Visual Studio
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
