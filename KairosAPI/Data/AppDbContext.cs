@@ -28,6 +28,8 @@ public partial class AppDbContext : DbContext
 
     public virtual DbSet<Promocione> Promociones { get; set; }
 
+    public virtual DbSet<PuntoInteres> PuntosInteres { get; set; }
+
     public virtual DbSet<RegistroClic> RegistroClics { get; set; }
 
     public virtual DbSet<Role> Roles { get; set; }
@@ -48,11 +50,12 @@ public partial class AppDbContext : DbContext
     {
         if (!optionsBuilder.IsConfigured)
         {
+            // NOTA: Recuerda que tener la cadena de conexión aquí no es seguro para producción.
+            // Es mejor usar appsettings.json, pero lo dejo como lo enviaste.
             var connectionString = "Server=ISAACGG\\SQLEXPRESS;Database=Kairos;User Id=sa;Password=12345678;TrustServerCertificate=True;";
             optionsBuilder.UseSqlServer(connectionString);
         }
     }
-
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -174,6 +177,33 @@ public partial class AppDbContext : DbContext
                 .HasConstraintName("FK__Notificac__idUsu__6E01572D");
         });
 
+        modelBuilder.Entity<PuntoInteres>(entity =>
+        {
+            entity.HasKey(e => e.IdPunto).HasName("PK_PuntosInteres");
+
+            entity.ToTable("PuntosInteres");
+
+            entity.Property(e => e.IdPunto).HasColumnName("idPunto");
+            entity.Property(e => e.IdLugar).HasColumnName("idLugar");
+            entity.Property(e => e.Etiqueta)
+                .HasMaxLength(100)
+                .HasColumnName("etiqueta");
+            entity.Property(e => e.Descripcion)
+                .HasMaxLength(255)
+                .HasColumnName("descripcion");
+            entity.Property(e => e.Prioridad)
+                .HasDefaultValue(0)
+                .HasColumnName("prioridad");
+            entity.Property(e => e.Estatus)
+                .HasDefaultValue(true)
+                .HasColumnName("estatus");
+
+            entity.HasOne(d => d.IdLugarNavigation).WithMany(p => p.PuntosInteres)
+                .HasForeignKey(d => d.IdLugar)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_PuntosInteres_Lugares");
+        });
+
         modelBuilder.Entity<Promocione>(entity =>
         {
             entity.HasKey(e => e.IdPromocion).HasName("PK__Promocio__811C0F993146511B");
@@ -241,6 +271,9 @@ public partial class AppDbContext : DbContext
                 .HasColumnName("nombreRol");
         });
 
+        // -----------------------------------------------------------------------
+        // AQUI ESTA LA CORRECCION PRINCIPAL PARA LA ENTIDAD RUTA
+        // -----------------------------------------------------------------------
         modelBuilder.Entity<Ruta>(entity =>
         {
             entity.HasKey(e => e.IdRuta).HasName("PK__Rutas__E584E6F40CD35E1A");
@@ -262,9 +295,27 @@ public partial class AppDbContext : DbContext
                 .HasMaxLength(150)
                 .HasColumnName("nombre");
 
+            // Mapeo explicito de las columnas para los lugares (Importante para evitar errores)
+            entity.Property(e => e.IdLugarInicio).HasColumnName("idLugarInicio");
+            entity.Property(e => e.IdLugarFin).HasColumnName("idLugarFin");
+
             entity.HasOne(d => d.IdUsuarioNavigation).WithMany(p => p.Ruta)
                 .HasForeignKey(d => d.IdUsuario)
                 .HasConstraintName("FK__Rutas__idUsuario__52593CB8");
+
+            // Configuración explicita para LugarInicio
+            entity.HasOne(d => d.IdLugarInicioNavigation)
+                  .WithMany() // Lugare no tiene una lista inversa explicita, se deja vacio
+                  .HasForeignKey(d => d.IdLugarInicio)
+                  .OnDelete(DeleteBehavior.ClientSetNull)
+                  .HasConstraintName("FK_Rutas_Lugares_Inicio");
+
+            // Configuración explicita para LugarFin
+            entity.HasOne(d => d.IdLugarFinNavigation)
+                  .WithMany()
+                  .HasForeignKey(d => d.IdLugarFin)
+                  .OnDelete(DeleteBehavior.ClientSetNull)
+                  .HasConstraintName("FK_Rutas_Lugares_Fin");
         });
 
         modelBuilder.Entity<RutasLugare>(entity =>

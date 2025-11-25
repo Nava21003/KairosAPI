@@ -4,23 +4,36 @@ using Microsoft.OpenApi.Models;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
+using System.Text.Json.Serialization; // Necesario para ReferenceHandler
 
 var builder = WebApplication.CreateBuilder(args);
 
+// --- 1. CONFIGURACIÓN DE SERVICIOS ---
+
 builder.Services.AddCors();
 
+// CORRECCIÓN PRINCIPAL AQUÍ:
+// Usamos IgnoreCycles para que el JSON sea estándar y React lo entienda.
 builder.Services.AddControllers().AddJsonOptions(x =>
-    x.JsonSerializerOptions.ReferenceHandler = System.Text.Json.Serialization.ReferenceHandler.Preserve
-);
+{
+    x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
+    x.JsonSerializerOptions.DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull; // Opcional: limpia nulos
+});
 
-// Configuraci�n de la conexi�n a la Base de Datos
+// Configuración de la conexión a la Base de Datos
 var connectionString = builder.Configuration.GetConnectionString("Kairos");
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlServer(connectionString));
 
-// 2. Configuraci�n de JWT
+// 2. Configuración de JWT
 var jwtSettings = builder.Configuration.GetSection("JwtSettings");
-var key = Encoding.ASCII.GetBytes(jwtSettings["SecretKey"] ?? throw new InvalidOperationException("SecretKey no configurada."));
+// Verificación de seguridad para evitar errores si falta la clave
+var secretKey = jwtSettings["SecretKey"];
+if (string.IsNullOrEmpty(secretKey))
+{
+    throw new InvalidOperationException("SecretKey no configurada en appsettings.json.");
+}
+var key = Encoding.ASCII.GetBytes(secretKey);
 
 builder.Services.AddAuthentication(options =>
 {
@@ -45,9 +58,7 @@ builder.Services.AddAuthentication(options =>
 });
 
 
-// 3. Configuraci�n de API y SWAGGER
-
-builder.Services.AddControllers();
+// 3. Configuración de API y SWAGGER
 
 builder.Services.AddEndpointsApiExplorer();
 
@@ -76,7 +87,7 @@ builder.Services.AddSwaggerGen(c =>
     });
 });
 
-
+// Configuración Kestrel (Puertos)
 builder.WebHost.ConfigureKestrel(options =>
 {
     options.ListenAnyIP(5219); // HTTP
@@ -84,8 +95,11 @@ builder.WebHost.ConfigureKestrel(options =>
 });
 
 
+// --- CONSTRUCCIÓN DE LA APP ---
 var app = builder.Build();
 
+
+// --- PIPELINE DE MIDDLEWARES ---
 
 if (app.Environment.IsDevelopment())
 {
@@ -94,14 +108,16 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-app.UseAuthentication(); 
-app.UseAuthorization();
-app.UseRouting();
 
+// El CORS debe ir antes de Auth y Authorization para evitar bloqueos en pre-flight requests
 app.UseCors(policy =>
     policy.AllowAnyOrigin()
           .AllowAnyHeader()
           .AllowAnyMethod());
 
+app.UseAuthentication();
+app.UseAuthorization();
+
 app.MapControllers();
+
 app.Run();

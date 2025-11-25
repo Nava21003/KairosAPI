@@ -337,6 +337,191 @@
         }
       }
     },
+    "/api/Intereses": {
+      "get": {
+        "tags": [
+          "Intereses"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Interese"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Interese"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Interese"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Intereses"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Interese"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Interese"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/Interese"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/Interese"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Interese"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Interese"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Intereses/{id}": {
+      "get": {
+        "tags": [
+          "Intereses"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/Interese"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Interese"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Interese"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Intereses"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Interese"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Interese"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/Interese"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Intereses"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/api/Lugares": {
       "get": {
         "tags": [
@@ -827,6 +1012,191 @@
         }
       }
     },
+    "/api/PuntosInteres": {
+      "get": {
+        "tags": [
+          "PuntosInteres"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/PuntoInteres"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/PuntoInteres"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/PuntoInteres"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "PuntosInteres"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PuntoInteres"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PuntoInteres"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/PuntoInteres"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/PuntoInteres"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PuntoInteres"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PuntoInteres"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/PuntosInteres/{id}": {
+      "get": {
+        "tags": [
+          "PuntosInteres"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/PuntoInteres"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PuntoInteres"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PuntoInteres"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "PuntosInteres"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PuntoInteres"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PuntoInteres"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/PuntoInteres"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "PuntosInteres"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/api/Roles": {
       "get": {
         "tags": [
@@ -1178,6 +1548,191 @@
       "delete": {
         "tags": [
           "Rutas"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/SociosAfiliados": {
+      "get": {
+        "tags": [
+          "SociosAfiliados"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/SociosAfiliado"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/SociosAfiliado"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/SociosAfiliado"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "SociosAfiliados"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SociosAfiliado"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SociosAfiliado"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/SociosAfiliado"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/SociosAfiliado"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SociosAfiliado"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SociosAfiliado"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/SociosAfiliados/{id}": {
+      "get": {
+        "tags": [
+          "SociosAfiliados"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/SociosAfiliado"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SociosAfiliado"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SociosAfiliado"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "SociosAfiliados"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SociosAfiliado"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SociosAfiliado"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/SociosAfiliado"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "SociosAfiliados"
         ],
         "parameters": [
           {
@@ -1805,6 +2360,14 @@
             "type": "string",
             "nullable": true
           },
+          "descripcion": {
+            "type": "string",
+            "nullable": true
+          },
+          "estatus": {
+            "type": "boolean",
+            "nullable": true
+          },
           "lugares": {
             "type": "array",
             "items": {
@@ -1927,6 +2490,13 @@
               "$ref": "#/components/schemas/RutasLugare"
             },
             "nullable": true
+          },
+          "puntosInteres": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PuntoInteres"
+            },
+            "nullable": true
           }
         },
         "additionalProperties": false
@@ -2002,9 +2572,6 @@
             "type": "boolean",
             "nullable": true
           },
-          "idLugarNavigation": {
-            "$ref": "#/components/schemas/Lugare"
-          },
           "idSocioNavigation": {
             "$ref": "#/components/schemas/SociosAfiliado"
           },
@@ -2014,6 +2581,40 @@
               "$ref": "#/components/schemas/RegistroClic"
             },
             "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "PuntoInteres": {
+        "type": "object",
+        "properties": {
+          "idPunto": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "idLugar": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "etiqueta": {
+            "type": "string",
+            "nullable": true
+          },
+          "descripcion": {
+            "type": "string",
+            "nullable": true
+          },
+          "prioridad": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "estatus": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "idLugarNavigation": {
+            "$ref": "#/components/schemas/Lugare"
           }
         },
         "additionalProperties": false
@@ -2089,6 +2690,36 @@
             "type": "string",
             "nullable": true
           },
+          "latitudInicio": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "longitudInicio": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "latitudFin": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "longitudFin": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "idLugarInicio": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "idLugarFin": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
           "fechaCreacion": {
             "type": "string",
             "format": "date-time",
@@ -2100,6 +2731,12 @@
           },
           "idUsuarioNavigation": {
             "$ref": "#/components/schemas/Usuario"
+          },
+          "idLugarInicioNavigation": {
+            "$ref": "#/components/schemas/Lugare"
+          },
+          "idLugarFinNavigation": {
+            "$ref": "#/components/schemas/Lugare"
           },
           "rutasLugares": {
             "type": "array",
@@ -2150,6 +2787,10 @@
           "tarifaCpc": {
             "type": "number",
             "format": "double",
+            "nullable": true
+          },
+          "estatus": {
+            "type": "boolean",
             "nullable": true
           },
           "promociones": {

@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace KairosAPI.Models;
+﻿namespace KairosAPI.Models;
 
 public partial class Promocione
 {
@@ -21,7 +18,9 @@ public partial class Promocione
 
     public bool? Estatus { get; set; }
 
-    public virtual Lugare IdLugarNavigation { get; set; } = null!;
+
+    [System.Text.Json.Serialization.JsonIgnore]
+    public virtual Lugare? IdLugarNavigation { get; set; }
 
     public virtual SociosAfiliado? IdSocioNavigation { get; set; }
 

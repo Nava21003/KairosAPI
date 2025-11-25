@@ -16,7 +16,7 @@ namespace KairosAPI.Models
         public bool Estatus { get; set; }
 
         // 🔗 Relaciones
-        public virtual Role IdRolNavigation { get; set; } = null!;
+        public virtual Role? IdRolNavigation { get; set; }
         public virtual ICollection<Actividades> Actividades { get; set; } = new List<Actividades>();
         public virtual ICollection<Notificacione> Notificaciones { get; set; } = new List<Notificacione>();
         public virtual ICollection<Ruta> Ruta { get; set; } = new List<Ruta>();
