@@ -41,7 +41,6 @@ namespace KairosAPI.Controllers
         [HttpPost]
         public async Task<ActionResult<Promocione>> PostPromocion(Promocione promocion)
         {
-            // Entity Framework ahora guardará también el campo 'Imagen' si viene en el objeto
             _context.Promociones.Add(promocion);
             await _context.SaveChangesAsync();
             return CreatedAtAction(nameof(GetPromocion), new { id = promocion.IdPromocion }, promocion);

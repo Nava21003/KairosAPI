@@ -20,8 +20,6 @@ namespace KairosAPI.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Lugare>>> GetLugares()
         {
-            // CORRECCIÓN: Quitamos el Where(Estatus == true) para que el admin vea todo.
-            // Usamos Select para un mapeo limpio.
             var lugares = await _context.Lugares
                 .Include(l => l.IdCategoriaNavigation)
                 .Select(l => new Lugare
@@ -37,7 +35,6 @@ namespace KairosAPI.Controllers
                     Imagen = l.Imagen,
                     EsPatrocinado = l.EsPatrocinado,
                     Estatus = l.Estatus,
-                    // Mapeamos solo el nombre de la categoría para mostrarlo en la tabla
                     IdCategoriaNavigation = l.IdCategoriaNavigation == null ? null : new Categoria
                     {
                         IdCategoria = l.IdCategoriaNavigation.IdCategoria,
@@ -66,7 +63,6 @@ namespace KairosAPI.Controllers
         [HttpPost]
         public async Task<ActionResult<Lugare>> PostLugar(Lugare lugar)
         {
-            // Limpiamos la navegación para evitar validaciones erróneas
             ModelState.Remove(nameof(lugar.IdCategoriaNavigation));
             ModelState.Remove(nameof(lugar.Actividades));
             ModelState.Remove(nameof(lugar.Promociones));
@@ -107,10 +103,6 @@ namespace KairosAPI.Controllers
         {
             var lugar = await _context.Lugares.FindAsync(id);
             if (lugar == null) return NotFound();
-
-            // Eliminación física o lógica según prefieras. 
-            // Aquí usamos eliminación física para limpiar BD, 
-            // pero si prefieres lógica usa: lugar.Estatus = false; y SaveChanges.
             _context.Lugares.Remove(lugar);
             await _context.SaveChangesAsync();
 

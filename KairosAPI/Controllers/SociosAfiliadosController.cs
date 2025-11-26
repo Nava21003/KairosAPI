@@ -20,19 +20,13 @@ namespace KairosAPI.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<SociosAfiliado>>> GetSociosAfiliados()
         {
-            // Usamos proyección (.Select) para evitar ciclos infinitos con las Promociones
             var socios = await _context.SociosAfiliados
                 .Select(s => new SociosAfiliado
                 {
                     IdSocio = s.IdSocio,
                     NombreSocio = s.NombreSocio,
                     TarifaCpc = s.TarifaCpc,
-
-                    // --- CORRECCIÓN IMPORTANTE: Mapear el estatus ---
                     Estatus = s.Estatus,
-                    // -----------------------------------------------
-
-                    // Opcional: Si quieres ver las promociones de este socio
                     Promociones = s.Promociones.Select(p => new Promocione
                     {
                         IdPromocion = p.IdPromocion,
@@ -41,7 +35,6 @@ namespace KairosAPI.Controllers
                         FechaInicio = p.FechaInicio,
                         FechaFin = p.FechaFin,
                         Estatus = p.Estatus
-                        // IMPORTANTE: NO incluimos 'IdSocioNavigation' aquí para romper el ciclo
                     }).ToList()
                 })
                 .ToListAsync();
@@ -60,11 +53,7 @@ namespace KairosAPI.Controllers
                     IdSocio = s.IdSocio,
                     NombreSocio = s.NombreSocio,
                     TarifaCpc = s.TarifaCpc,
-
-                    // --- CORRECCIÓN IMPORTANTE: Mapear el estatus ---
                     Estatus = s.Estatus,
-                    // -----------------------------------------------
-
                     Promociones = s.Promociones.Select(p => new Promocione
                     {
                         IdPromocion = p.IdPromocion,
@@ -95,8 +84,6 @@ namespace KairosAPI.Controllers
             }
 
             _context.Entry(sociosAfiliado).State = EntityState.Modified;
-
-            // Evitamos que intente modificar las promociones en esta petición si vienen nulas o vacías
             _context.Entry(sociosAfiliado).Collection(s => s.Promociones).IsModified = false;
 
             try
@@ -122,7 +109,6 @@ namespace KairosAPI.Controllers
         [HttpPost]
         public async Task<ActionResult<SociosAfiliado>> PostSociosAfiliado(SociosAfiliado sociosAfiliado)
         {
-            // Limpiamos validaciones de la lista de promociones para evitar errores de validación
             ModelState.Remove(nameof(sociosAfiliado.Promociones));
 
             if (!ModelState.IsValid)

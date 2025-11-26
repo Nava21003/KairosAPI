@@ -4,20 +4,18 @@ using Microsoft.OpenApi.Models;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
-using System.Text.Json.Serialization; // Necesario para ReferenceHandler
+using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// --- 1. CONFIGURACIÓN DE SERVICIOS ---
+// CONFIGURACIÓN DE SERVICIOS
 
 builder.Services.AddCors();
 
-// CORRECCIÓN PRINCIPAL AQUÍ:
-// Usamos IgnoreCycles para que el JSON sea estándar y React lo entienda.
 builder.Services.AddControllers().AddJsonOptions(x =>
 {
     x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
-    x.JsonSerializerOptions.DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull; // Opcional: limpia nulos
+    x.JsonSerializerOptions.DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull;
 });
 
 // Configuración de la conexión a la Base de Datos
@@ -25,9 +23,8 @@ var connectionString = builder.Configuration.GetConnectionString("Kairos");
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlServer(connectionString));
 
-// 2. Configuración de JWT
+// Configuración de JWT
 var jwtSettings = builder.Configuration.GetSection("JwtSettings");
-// Verificación de seguridad para evitar errores si falta la clave
 var secretKey = jwtSettings["SecretKey"];
 if (string.IsNullOrEmpty(secretKey))
 {
@@ -58,7 +55,7 @@ builder.Services.AddAuthentication(options =>
 });
 
 
-// 3. Configuración de API y SWAGGER
+// Configuración de API y SWAGGER
 
 builder.Services.AddEndpointsApiExplorer();
 
@@ -87,19 +84,17 @@ builder.Services.AddSwaggerGen(c =>
     });
 });
 
-// Configuración Kestrel (Puertos)
+
 builder.WebHost.ConfigureKestrel(options =>
 {
-    options.ListenAnyIP(5219); // HTTP
-    options.ListenAnyIP(7219, listenOptions => { /* opcional TLS */ });
+    options.ListenAnyIP(5219);
+    options.ListenAnyIP(7219, listenOptions => { });
 });
 
 
-// --- CONSTRUCCIÓN DE LA APP ---
+// CONSTRUCCIÓN DE LA APP
 var app = builder.Build();
 
-
-// --- PIPELINE DE MIDDLEWARES ---
 
 if (app.Environment.IsDevelopment())
 {
@@ -109,7 +104,6 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-// El CORS debe ir antes de Auth y Authorization para evitar bloqueos en pre-flight requests
 app.UseCors(policy =>
     policy.AllowAnyOrigin()
           .AllowAnyHeader()

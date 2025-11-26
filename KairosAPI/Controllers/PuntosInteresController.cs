@@ -21,7 +21,7 @@ namespace KairosAPI.Controllers
         public async Task<ActionResult<IEnumerable<PuntoInteres>>> GetPuntosInteres()
         {
             var puntos = await _context.PuntosInteres
-                .Include(p => p.IdLugarNavigation) // Incluimos el Lugar para ver su nombre
+                .Include(p => p.IdLugarNavigation)
                 .Select(p => new PuntoInteres
                 {
                     IdPunto = p.IdPunto,
@@ -30,7 +30,6 @@ namespace KairosAPI.Controllers
                     Descripcion = p.Descripcion,
                     Prioridad = p.Prioridad,
                     Estatus = p.Estatus,
-                    // Mapeamos solo lo necesario del Lugar para evitar ciclos
                     IdLugarNavigation = p.IdLugarNavigation == null ? null : new Lugare
                     {
                         IdLugar = p.IdLugarNavigation.IdLugar,
@@ -39,7 +38,7 @@ namespace KairosAPI.Controllers
                         Direccion = p.IdLugarNavigation.Direccion
                     }
                 })
-                .OrderByDescending(p => p.Prioridad) // Ordenamos por prioridad
+                .OrderByDescending(p => p.Prioridad)
                 .ToListAsync();
 
             return Ok(puntos);
@@ -65,8 +64,6 @@ namespace KairosAPI.Controllers
             ModelState.Remove(nameof(punto.IdLugarNavigation));
 
             if (!ModelState.IsValid) return BadRequest(ModelState);
-
-            // Validar que el lugar exista
             if (!_context.Lugares.Any(l => l.IdLugar == punto.IdLugar))
                 return BadRequest("El lugar especificado no existe.");
 

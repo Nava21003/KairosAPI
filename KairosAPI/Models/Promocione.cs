@@ -12,7 +12,6 @@ public partial class Promocione
 
     public string? Descripcion { get; set; }
 
-    // Campo nuevo agregado
     public string? Imagen { get; set; }
 
     public DateTime FechaInicio { get; set; }

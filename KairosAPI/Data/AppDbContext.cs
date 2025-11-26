@@ -54,8 +54,6 @@ public partial class AppDbContext : DbContext
     {
         if (!optionsBuilder.IsConfigured)
         {
-            // NOTA: Recuerda que tener la cadena de conexión aquí no es seguro para producción.
-            // Es mejor usar appsettings.json, pero lo dejo como lo enviaste.
             var connectionString = "Server=ISAACGG\\SQLEXPRESS;Database=Kairos;User Id=sa;Password=12345678;TrustServerCertificate=True;";
             optionsBuilder.UseSqlServer(connectionString);
         }
@@ -156,7 +154,6 @@ public partial class AppDbContext : DbContext
                 .HasConstraintName("FK__Lugares__idCateg__4D94879B");
         });
 
-        // === NUEVO: Configuración de MensajesContacto ===
         modelBuilder.Entity<MensajesContacto>(entity =>
         {
             entity.HasKey(e => e.IdMensaje);
@@ -209,7 +206,6 @@ public partial class AppDbContext : DbContext
                 .HasConstraintName("FK__Notificac__idUsu__6E01572D");
         });
 
-        // === NUEVO: Configuración de PreguntasFrecuentes ===
         modelBuilder.Entity<PreguntasFrecuentes>(entity =>
         {
             entity.HasKey(e => e.IdPregunta);

@@ -41,8 +41,6 @@ namespace KairosAPI.Controllers
         public async Task<ActionResult<MensajesContacto>> PostMensaje(MensajesContacto mensaje)
         {
             if (!ModelState.IsValid) return BadRequest(ModelState);
-
-            // Aseguramos valores por defecto si no vienen
             if (mensaje.FechaEnvio == null) mensaje.FechaEnvio = DateTime.Now;
             if (string.IsNullOrEmpty(mensaje.Estatus)) mensaje.Estatus = "Pendiente";
 
