@@ -8,6 +8,8 @@ using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 
+AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
+
 // CONFIGURACIÓN DE SERVICIOS
 
 builder.Services.AddCors();
@@ -18,18 +20,21 @@ builder.Services.AddControllers().AddJsonOptions(x =>
     x.JsonSerializerOptions.DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull;
 });
 
-// Configuración de la conexión a la Base de Datos
-var connectionString = builder.Configuration.GetConnectionString("Kairos");
+// CONFIGURACIÓN DE BASE DE DATOS (POSTGRES)
+var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+
 builder.Services.AddDbContext<AppDbContext>(options =>
-    options.UseSqlServer(connectionString));
+    options.UseNpgsql(connectionString));
 
 // Configuración de JWT
 var jwtSettings = builder.Configuration.GetSection("JwtSettings");
 var secretKey = jwtSettings["SecretKey"];
+
 if (string.IsNullOrEmpty(secretKey))
 {
     throw new InvalidOperationException("SecretKey no configurada en appsettings.json.");
 }
+
 var key = Encoding.ASCII.GetBytes(secretKey);
 
 builder.Services.AddAuthentication(options =>
@@ -84,7 +89,7 @@ builder.Services.AddSwaggerGen(c =>
     });
 });
 
-
+// Configuración de puertos
 builder.WebHost.ConfigureKestrel(options =>
 {
     options.ListenAnyIP(5219);
