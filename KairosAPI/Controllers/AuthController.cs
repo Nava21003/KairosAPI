@@ -54,12 +54,6 @@ namespace KairosAPI.Controllers
             });
         }
 
-        // --------------------------
-        // REGISTRO (con JsonElement)
-        // --------------------------
-        // --------------------------
-        // REGISTRO (CORREGIDO)
-        // --------------------------
         [HttpPost("register")]
         [IgnoreAntiforgeryToken]
         [Consumes("application/json")]
@@ -110,7 +104,7 @@ namespace KairosAPI.Controllers
                     nuevo.Nombre,
                     nuevo.Apellido,
                     nuevo.Correo,
-                    nuevo.IdRol // Para que veas en la respuesta que sí cambió
+                    nuevo.IdRol 
                 }
             });
         }
@@ -145,7 +139,6 @@ namespace KairosAPI.Controllers
         }
     }
 
-    // Modelo de petición de login
     public class LoginRequest
     {
         public string? Correo { get; set; }
