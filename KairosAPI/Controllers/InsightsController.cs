@@ -74,59 +74,89 @@ namespace KairosAPI.Controllers
             }
         }
 
-        // 🧠 LÓGICA DE IA: Genera mensajes personalizados
+        // 🧠 LÓGICA DE IA: Genera mensajes personalizados y conversacionales
         private string GenerarMensajeInteligente(int pasosHoy, int tiempoMinutos, double pasosPromedio, double tiempoPromedio)
         {
             // CASO 1: Excelente balance (buenos pasos, bajo tiempo digital)
             if (pasosHoy >= 8000 && tiempoMinutos <= 60)
             {
-                return "🌟 ¡Increíble! Estás en tu mejor momento. Sigue así, campeón.";
+                var frases = new[] {
+                    $"🌟 ¡WOW! {pasosHoy} pasos y solo {tiempoMinutos}min en pantalla. Estás dominando tu día como un campeón. ¿Te atreves a explorar un lugar nuevo mañana?",
+                    $"🔥 ¡Eres imparable! Con {pasosHoy} pasos hoy, estás en la cima de tu juego. Tu yo del futuro te agradecerá este esfuerzo.",
+                    $"💎 ¡Perfección! {pasosHoy} pasos + control digital = fórmula ganadora. Así se construye una vida épica, paso a paso."
+                };
+                return frases[new Random().Next(frases.Length)];
             }
 
             // CASO 2: Buenos pasos pero mucho tiempo digital
             if (pasosHoy >= 5000 && tiempoMinutos > 120)
             {
-                return "💪 Excelente actividad física, pero reduce un poco el tiempo en pantalla. Tu mente te lo agradecerá.";
+                return $"💪 ¡Genial con los {pasosHoy} pasos! Pero... {tiempoMinutos}min en pantalla es mucho. ¿Y si apagas el celular 1 hora antes de dormir? Tu sueño (y tu cerebro) lo amarán.";
             }
 
             // CASO 3: Pocos pasos y mucho tiempo digital (alerta crítica)
             if (pasosHoy < 2000 && tiempoMinutos > 180)
             {
-                return "⚠️ Hoy has estado mucho tiempo en el celular. ¿Qué tal una caminata de 15 minutos? Tu cuerpo lo necesita.";
+                return $"⚠️ Ey, solo {pasosHoy} pasos pero {tiempoMinutos}min de pantalla. Tu cuerpo está pidiendo movimiento. ¿Caminata de 20 minutos? Prometo que después te sentirás increíble.";
             }
 
-            // CASO 4: Mejorando respecto al promedio
+            // CASO 4: Mejorando respecto al promedio (motivación específica)
             if (pasosHoy > pasosPromedio * 1.2)
             {
-                return $"📈 ¡Vas mejor que tu promedio semanal! Llevas {pasosHoy} pasos hoy, tu promedio es {(int)pasosPromedio}.";
+                return $"📈 ¡IMPRESIONANTE! Estás {(int)((pasosHoy / pasosPromedio - 1) * 100)}% arriba de tu promedio ({(int)pasosPromedio} pasos). Sigue así y esta semana será legendaria. 🚀";
             }
 
             // CASO 5: Reduciendo tiempo digital exitosamente
             if (tiempoMinutos < tiempoPromedio * 0.8 && tiempoPromedio > 0)
             {
-                return $"🎯 ¡Estás reduciendo tu tiempo digital! Hoy: {tiempoMinutos}min, promedio: {(int)tiempoPromedio}min.";
+                int reduccion = (int)(tiempoPromedio - tiempoMinutos);
+                return $"🎯 ¡Bravo! Has reducido {reduccion}min de pantalla hoy. Eso es más tiempo para vivir el mundo real. ¿Qué harás con esos minutos extra? 😊";
             }
 
-            // CASO 6: Día promedio (motivación general)
+            // CASO 6: Día promedio pero con potencial
             if (pasosHoy >= 3000 && pasosHoy < 8000)
             {
-                return $"👍 Vas bien hoy con {pasosHoy} pasos. ¿Puedes llegar a 5000 antes de dormir?";
+                int faltantes = 8000 - pasosHoy;
+                return $"👍 Llevas {pasosHoy} pasos sólidos. Te faltan {faltantes} para alcanzar los 8K. Una caminata de 15min al atardecer y lo logras. ¿Te animas?";
             }
 
-            // CASO 7: Inicio del día (sin datos suficientes)
+            // CASO 7: Inicio del día (motivación proactiva)
             if (pasosHoy < 500 && tiempoMinutos < 30)
             {
-                return "🌅 ¡Buenos días! Sal a explorar. El mundo está ahí afuera esperándote.";
+                var horaActual = DateTime.Now.Hour;
+                if (horaActual < 12)
+                    return "☀️ Buenos días, explorador. Hoy es un lienzo en blanco. ¿Qué tal empezar con una caminata matutina? El aire fresco despierta la creatividad.";
+                else if (horaActual < 18)
+                    return "🌤️ Buenas tardes. Aún tienes tiempo para hacer de hoy un gran día. Una caminata de 20 minutos puede cambiar tu energía por completo.";
+                else
+                    return "🌙 Buenas noches. Aunque es tarde, nunca está de más una caminata nocturna de 10min. Relaja la mente y prepara el sueño.";
             }
 
-            // CASO 8: Sedentarismo detectado
-            if (pasosHoy < 1000)
+            // CASO 8: Pantalla moderada pero pocos pasos
+            if (pasosHoy < 3000 && tiempoMinutos >= 60 && tiempoMinutos <= 120)
             {
-                return "🚶 Llevas pocos pasos hoy. Una caminata corta puede cambiar tu día por completo.";
+                return $"🤔 Solo {pasosHoy} pasos hoy. Tu cuerpo está diseñado para moverse, no para estar quieto. ¿Qué tal visitar ese café que tenías pendiente? Caminando, claro.";
             }
 
-            // CASO DEFAULT: Motivación general
-            return "💙 Recuerda: cada paso cuenta, cada minuto lejos de la pantalla es vida ganada.";
+            // CASO 9: Sedentarismo detectado (crítico)
+            if (pasosHoy < 1000 && tiempoMinutos > 60)
+            {
+                return $"🚨 Solo {pasosHoy} pasos en {tiempoMinutos}min de pantalla. Tu cuerpo necesita movimiento urgente. Aunque sea 5min de caminar, ¡hazlo ya!";
+            }
+
+            // CASO 10: Usuario constante (motivación de mantenimiento)
+            if (Math.Abs(pasosHoy - pasosPromedio) < 500 && pasosPromedio > 3000)
+            {
+                return $"⚡ Eres super constante con tus {pasosHoy} pasos diarios. La consistencia es la clave del éxito. ¿Qué tal subir el nivel a 6K esta semana?";
+            }
+
+            // CASO DEFAULT: Motivación general conversacional
+            var frasesFallback = new[] {
+                "💙 Cada paso que das es una victoria. Cada minuto sin pantalla es libertad. Sigue adelante, explorador.",
+                "🌍 El mundo está lleno de lugares increíbles esperándote. ¿Cuál será tu próxima aventura?",
+                "✨ Tu bienestar no es un destino, es un viaje. Y hoy ya diste el primer paso al abrir esta app."
+            };
+            return frasesFallback[new Random().Next(frasesFallback.Length)];
         }
 
         // 🎨 Determina el tipo de mensaje para la UI (success, warning, info)
