@@ -353,7 +353,7 @@ public partial class AppDbContext : DbContext
                   .WithMany()
                   .HasForeignKey(d => d.IdLugarFin)
                   .OnDelete(DeleteBehavior.ClientSetNull)
-                  .HasConstraintName("FK_Rutas_Lugares_Fin");
+                  .HasConstraintName("FK_Rutas_Lugares_Fin");   
         });
 
         modelBuilder.Entity<RutasLugare>(entity =>

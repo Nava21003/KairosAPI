@@ -12,7 +12,7 @@ AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
 
 // CONFIGURACIÓN DE SERVICIOS
 
-builder.Services.AddCors();
+builder.Services.AddCors(); 
 
 builder.Services.AddControllers().AddJsonOptions(x =>
 {
@@ -24,7 +24,7 @@ builder.Services.AddControllers().AddJsonOptions(x =>
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 
 builder.Services.AddDbContext<AppDbContext>(options =>
-    options.UseNpgsql(connectionString));
+    options.UseNpgsql(connectionString));   
 
 // Configuración de JWT
 var jwtSettings = builder.Configuration.GetSection("JwtSettings");
