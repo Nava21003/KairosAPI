@@ -20,8 +20,9 @@ namespace KairosAPI.Controllers
         public async Task<ActionResult<IEnumerable<Ruta>>> GetRutas()
         {
             return await _context.Rutas
-                .Include(r => r.IdRuta)
                 .Include(r => r.IdUsuarioNavigation)
+                .Include(r => r.IdLugarInicioNavigation) 
+                .Include(r => r.IdLugarFinNavigation)  
                 .ToListAsync();
         }
 
@@ -29,8 +30,10 @@ namespace KairosAPI.Controllers
         public async Task<ActionResult<Ruta>> GetRuta(int id)
         {
             var ruta = await _context.Rutas
-                .Include(r => r.IdRuta)
                 .Include(r => r.IdUsuarioNavigation)
+                .Include(r => r.IdLugarInicioNavigation)
+                .Include(r => r.IdLugarFinNavigation)
+                .Include(r => r.RutasLugares)
                 .FirstOrDefaultAsync(r => r.IdRuta == id);
 
             if (ruta == null) return NotFound();
@@ -49,8 +52,25 @@ namespace KairosAPI.Controllers
         public async Task<IActionResult> PutRuta(int id, Ruta ruta)
         {
             if (id != ruta.IdRuta) return BadRequest();
+
             _context.Entry(ruta).State = EntityState.Modified;
-            await _context.SaveChangesAsync();
+
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!RutaExists(id))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
             return NoContent();
         }
 
@@ -59,9 +79,16 @@ namespace KairosAPI.Controllers
         {
             var ruta = await _context.Rutas.FindAsync(id);
             if (ruta == null) return NotFound();
+
             _context.Rutas.Remove(ruta);
             await _context.SaveChangesAsync();
+
             return NoContent();
+        }
+
+        private bool RutaExists(int id)
+        {
+            return _context.Rutas.Any(e => e.IdRuta == id);
         }
     }
 }

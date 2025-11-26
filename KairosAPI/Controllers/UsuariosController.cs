@@ -16,30 +16,85 @@ namespace KairosAPI.Controllers
             _context = context;
         }
 
+        // GET: api/Usuarios
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Usuario>>> GetUsuarios()
         {
-            return await _context.Usuarios.Include(u => u.IdRolNavigation).ToListAsync();
+            var usuarios = await _context.Usuarios
+                .Select(u => new Usuario
+                {
+                    IdUsuario = u.IdUsuario,
+                    IdRol = u.IdRol,
+                    Nombre = u.Nombre,
+                    Apellido = u.Apellido,
+                    Correo = u.Correo,
+                    Contrasena = u.Contrasena,
+                    FechaRegistro = u.FechaRegistro,
+                    FotoPerfil = u.FotoPerfil,
+                    Estatus = u.Estatus,
+
+                    IdRolNavigation = u.IdRolNavigation == null ? null : new Role
+                    {
+                        IdRol = u.IdRolNavigation.IdRol,
+                        NombreRol = u.IdRolNavigation.NombreRol
+                    }
+                })
+                .ToListAsync();
+
+            return Ok(usuarios);
         }
 
+        // GET: api/Usuarios/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Usuario>> GetUsuario(int id)
         {
             var usuario = await _context.Usuarios
-                .Include(u => u.IdRolNavigation)
-                .FirstOrDefaultAsync(u => u.IdUsuario == id);
+                .Where(u => u.IdUsuario == id)
+                .Select(u => new Usuario
+                {
+                    IdUsuario = u.IdUsuario,
+                    IdRol = u.IdRol,
+                    Nombre = u.Nombre,
+                    Apellido = u.Apellido,
+                    Correo = u.Correo,
+                    Contrasena = u.Contrasena,
+                    FechaRegistro = u.FechaRegistro,
+                    FotoPerfil = u.FotoPerfil,
+                    Estatus = u.Estatus,
+
+                    IdRolNavigation = u.IdRolNavigation == null ? null : new Role
+                    {
+                        IdRol = u.IdRolNavigation.IdRol,
+                        NombreRol = u.IdRolNavigation.NombreRol
+                    }
+                })
+                .FirstOrDefaultAsync();
+
             if (usuario == null) return NotFound();
             return usuario;
         }
 
+        // POST: api/Usuarios
         [HttpPost]
         public async Task<ActionResult<Usuario>> PostUsuario(Usuario usuario)
         {
+            if (string.IsNullOrEmpty(usuario.Contrasena))
+            {
+                return BadRequest("La contraseña es obligatoria para nuevos usuarios.");
+            }
+
+            if (usuario.FechaRegistro == null)
+            {
+                usuario.FechaRegistro = DateTime.Now;
+            }
+
             _context.Usuarios.Add(usuario);
             await _context.SaveChangesAsync();
+
             return CreatedAtAction(nameof(GetUsuario), new { id = usuario.IdUsuario }, usuario);
         }
 
+        // PUT: api/Usuarios/5
         [HttpPut("{id}")]
         public async Task<IActionResult> PutUsuario(int id, [FromBody] PerfilUpdateRequest request)
         {
@@ -76,24 +131,35 @@ namespace KairosAPI.Controllers
             });
         }
 
+        // PATCH: api/Usuarios/5/estatus
         [HttpPatch("{id}/estatus")]
         public async Task<IActionResult> CambiarEstatus(int id)
         {
             var usuario = await _context.Usuarios.FindAsync(id);
             if (usuario == null) return NotFound();
+
             usuario.Estatus = !usuario.Estatus;
             await _context.SaveChangesAsync();
+
             return Ok(usuario);
         }
 
+        // DELETE: api/Usuarios/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteUsuario(int id)
         {
             var usuario = await _context.Usuarios.FindAsync(id);
             if (usuario == null) return NotFound();
+
             _context.Usuarios.Remove(usuario);
             await _context.SaveChangesAsync();
+
             return NoContent();
+        }
+
+        private bool UsuarioExists(int id)
+        {
+            return _context.Usuarios.Any(e => e.IdUsuario == id);
         }
     }
 }

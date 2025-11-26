@@ -4,23 +4,38 @@ using Microsoft.OpenApi.Models;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
+using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddCors();
+AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
+
+// CONFIGURACIÓN DE SERVICIOS
+
+builder.Services.AddCors(); 
 
 builder.Services.AddControllers().AddJsonOptions(x =>
-    x.JsonSerializerOptions.ReferenceHandler = System.Text.Json.Serialization.ReferenceHandler.Preserve
-);
+{
+    x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
+    x.JsonSerializerOptions.DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull;
+});
 
-// Configuraci�n de la conexi�n a la Base de Datos
-var connectionString = builder.Configuration.GetConnectionString("Kairos");
+// CONFIGURACIÓN DE BASE DE DATOS (POSTGRES)
+var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+
 builder.Services.AddDbContext<AppDbContext>(options =>
-    options.UseSqlServer(connectionString));
+    options.UseNpgsql(connectionString));   
 
-// 2. Configuraci�n de JWT
+// Configuración de JWT
 var jwtSettings = builder.Configuration.GetSection("JwtSettings");
-var key = Encoding.ASCII.GetBytes(jwtSettings["SecretKey"] ?? throw new InvalidOperationException("SecretKey no configurada."));
+var secretKey = jwtSettings["SecretKey"];
+
+if (string.IsNullOrEmpty(secretKey))
+{
+    throw new InvalidOperationException("SecretKey no configurada en appsettings.json.");
+}
+
+var key = Encoding.ASCII.GetBytes(secretKey);
 
 builder.Services.AddAuthentication(options =>
 {
@@ -45,9 +60,7 @@ builder.Services.AddAuthentication(options =>
 });
 
 
-// 3. Configuraci�n de API y SWAGGER
-
-builder.Services.AddControllers();
+// Configuración de API y SWAGGER
 
 builder.Services.AddEndpointsApiExplorer();
 
@@ -76,14 +89,15 @@ builder.Services.AddSwaggerGen(c =>
     });
 });
 
-
+// Configuración de puertos
 builder.WebHost.ConfigureKestrel(options =>
 {
-    options.ListenAnyIP(5219); // HTTP
-    options.ListenAnyIP(7219, listenOptions => { /* opcional TLS */ });
+    options.ListenAnyIP(5219);
+    options.ListenAnyIP(7219, listenOptions => { });
 });
 
 
+// CONSTRUCCIÓN DE LA APP
 var app = builder.Build();
 
 
@@ -94,14 +108,16 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-app.UseAuthentication(); 
-app.UseAuthorization();
-app.UseRouting();
 
 app.UseCors(policy =>
     policy.AllowAnyOrigin()
           .AllowAnyHeader()
           .AllowAnyMethod());
 
+app.UseStaticFiles();
+app.UseAuthentication();
+app.UseAuthorization();
+
 app.MapControllers();
+
 app.Run();
