@@ -24,9 +24,15 @@ public partial class AppDbContext : DbContext
 
     public virtual DbSet<Lugare> Lugares { get; set; }
 
+    public virtual DbSet<MensajesContacto> MensajesContactos { get; set; }
+
     public virtual DbSet<Notificacione> Notificaciones { get; set; }
 
+    public virtual DbSet<PreguntasFrecuentes> PreguntasFrecuentes { get; set; }
+
     public virtual DbSet<Promocione> Promociones { get; set; }
+
+    public virtual DbSet<PuntoInteres> PuntosInteres { get; set; }
 
     public virtual DbSet<RegistroClic> RegistroClics { get; set; }
 
@@ -44,21 +50,12 @@ public partial class AppDbContext : DbContext
 
     public virtual DbSet<Usuario> Usuarios { get; set; }
 
-    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-    {
-        if (!optionsBuilder.IsConfigured)
-        {
-            var connectionString = "Server=ISAACGG\\SQLEXPRESS;Database=Kairos;User Id=sa;Password=12345678;TrustServerCertificate=True;";
-            optionsBuilder.UseSqlServer(connectionString);
-        }
-    }
-
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<Actividades>(entity =>
         {
-            entity.HasKey(e => e.IdActividad).HasName("PK__Activida__327F9BED2ACFE81F");
+            entity.HasKey(e => e.IdActividad).HasName("PK_Actividades");
 
             entity.Property(e => e.IdActividad).HasColumnName("idActividad");
             entity.Property(e => e.Calificacion).HasColumnName("calificacion");
@@ -69,10 +66,10 @@ public partial class AppDbContext : DbContext
                 .HasColumnType("decimal(10, 2)")
                 .HasColumnName("distancia");
             entity.Property(e => e.FechaFin)
-                .HasColumnType("datetime")
+                .HasColumnType("timestamp")
                 .HasColumnName("fechaFin");
             entity.Property(e => e.FechaInicio)
-                .HasColumnType("datetime")
+                .HasColumnType("timestamp")
                 .HasColumnName("fechaInicio");
             entity.Property(e => e.IdLugar).HasColumnName("idLugar");
             entity.Property(e => e.IdUsuario).HasColumnName("idUsuario");
@@ -80,18 +77,18 @@ public partial class AppDbContext : DbContext
 
             entity.HasOne(d => d.IdLugarNavigation).WithMany(p => p.Actividades)
                 .HasForeignKey(d => d.IdLugar)
-                .HasConstraintName("FK__Actividad__idLug__6B24EA82");
+                .HasConstraintName("FK_Actividades_Lugares");
 
             entity.HasOne(d => d.IdUsuarioNavigation).WithMany(p => p.Actividades)
                 .HasForeignKey(d => d.IdUsuario)
-                .HasConstraintName("FK__Actividad__idUsu__6A30C649");
+                .HasConstraintName("FK_Actividades_Usuarios");
         });
 
         modelBuilder.Entity<Categoria>(entity =>
         {
-            entity.HasKey(e => e.IdCategoria).HasName("PK__Categori__8A3D240C8BD2A978");
+            entity.HasKey(e => e.IdCategoria).HasName("PK_Categorias");
 
-            entity.HasIndex(e => e.Nombre, "UQ__Categori__72AFBCC6DE4FF646").IsUnique();
+            entity.HasIndex(e => e.Nombre, "UQ_Categorias_Nombre").IsUnique();
 
             entity.Property(e => e.IdCategoria).HasColumnName("idCategoria");
             entity.Property(e => e.Nombre)
@@ -101,7 +98,7 @@ public partial class AppDbContext : DbContext
 
         modelBuilder.Entity<Interese>(entity =>
         {
-            entity.HasKey(e => e.IdInteres).HasName("PK__Interese__650CDE950F0ABA76");
+            entity.HasKey(e => e.IdInteres).HasName("PK_Intereses");
 
             entity.Property(e => e.IdInteres).HasColumnName("idInteres");
             entity.Property(e => e.Descripcion)
@@ -114,7 +111,7 @@ public partial class AppDbContext : DbContext
 
         modelBuilder.Entity<Lugare>(entity =>
         {
-            entity.HasKey(e => e.IdLugar).HasName("PK__Lugares__F7460D5FFEAF67D4");
+            entity.HasKey(e => e.IdLugar).HasName("PK_Lugares");
 
             entity.Property(e => e.IdLugar).HasColumnName("idLugar");
             entity.Property(e => e.Descripcion)
@@ -132,7 +129,7 @@ public partial class AppDbContext : DbContext
                 .HasColumnName("horario");
             entity.Property(e => e.IdCategoria).HasColumnName("idCategoria");
             entity.Property(e => e.Imagen)
-                .HasMaxLength(255)
+                .HasColumnType("text")
                 .HasColumnName("imagen");
             entity.Property(e => e.Latitud)
                 .HasColumnType("decimal(10, 6)")
@@ -146,17 +143,44 @@ public partial class AppDbContext : DbContext
 
             entity.HasOne(d => d.IdCategoriaNavigation).WithMany(p => p.Lugares)
                 .HasForeignKey(d => d.IdCategoria)
-                .HasConstraintName("FK__Lugares__idCateg__4D94879B");
+                .HasConstraintName("FK_Lugares_Categorias");
+        });
+
+        modelBuilder.Entity<MensajesContacto>(entity =>
+        {
+            entity.HasKey(e => e.IdMensaje);
+            entity.ToTable("MensajesContacto");
+
+            entity.Property(e => e.IdMensaje).HasColumnName("idMensaje");
+            entity.Property(e => e.Nombre)
+                .HasMaxLength(150)
+                .HasColumnName("nombre");
+            entity.Property(e => e.Correo)
+                .HasMaxLength(150)
+                .HasColumnName("correo");
+            entity.Property(e => e.Asunto)
+                .HasMaxLength(100)
+                .HasColumnName("asunto");
+            entity.Property(e => e.Mensaje)
+                .HasColumnName("mensaje");
+            entity.Property(e => e.FechaEnvio)
+                .HasDefaultValueSql("NOW()")
+                .HasColumnType("timestamp")
+                .HasColumnName("fechaEnvio");
+            entity.Property(e => e.Estatus)
+                .HasMaxLength(50)
+                .HasDefaultValue("Pendiente")
+                .HasColumnName("estatus");
         });
 
         modelBuilder.Entity<Notificacione>(entity =>
         {
-            entity.HasKey(e => e.IdNotificacion).HasName("PK__Notifica__AFE1D7E4EE19D0AF");
+            entity.HasKey(e => e.IdNotificacion).HasName("PK_Notificaciones");
 
             entity.Property(e => e.IdNotificacion).HasColumnName("idNotificacion");
             entity.Property(e => e.FechaEnvio)
-                .HasDefaultValueSql("(getdate())")
-                .HasColumnType("datetime")
+                .HasDefaultValueSql("NOW()")
+                .HasColumnType("timestamp")
                 .HasColumnName("fechaEnvio");
             entity.Property(e => e.IdUsuario).HasColumnName("idUsuario");
             entity.Property(e => e.Leido)
@@ -171,12 +195,62 @@ public partial class AppDbContext : DbContext
 
             entity.HasOne(d => d.IdUsuarioNavigation).WithMany(p => p.Notificaciones)
                 .HasForeignKey(d => d.IdUsuario)
-                .HasConstraintName("FK__Notificac__idUsu__6E01572D");
+                .HasConstraintName("FK_Notificaciones_Usuarios");
+        });
+
+        modelBuilder.Entity<PreguntasFrecuentes>(entity =>
+        {
+            entity.HasKey(e => e.IdPregunta);
+            entity.ToTable("PreguntasFrecuentes");
+
+            entity.Property(e => e.IdPregunta).HasColumnName("idPregunta");
+            entity.Property(e => e.Pregunta)
+                .HasMaxLength(255)
+                .HasColumnName("pregunta");
+            entity.Property(e => e.Respuesta)
+                .HasColumnName("respuesta");
+            entity.Property(e => e.Categoria)
+                .HasMaxLength(100)
+                .HasDefaultValue("General")
+                .HasColumnName("categoria");
+            entity.Property(e => e.Orden)
+                .HasDefaultValue(0)
+                .HasColumnName("orden");
+            entity.Property(e => e.Estatus)
+                .HasDefaultValue(true)
+                .HasColumnName("estatus");
+        });
+
+        modelBuilder.Entity<PuntoInteres>(entity =>
+        {
+            entity.HasKey(e => e.IdPunto).HasName("PK_PuntosInteres");
+
+            entity.ToTable("PuntosInteres");
+
+            entity.Property(e => e.IdPunto).HasColumnName("idPunto");
+            entity.Property(e => e.IdLugar).HasColumnName("idLugar");
+            entity.Property(e => e.Etiqueta)
+                .HasMaxLength(100)
+                .HasColumnName("etiqueta");
+            entity.Property(e => e.Descripcion)
+                .HasMaxLength(255)
+                .HasColumnName("descripcion");
+            entity.Property(e => e.Prioridad)
+                .HasDefaultValue(0)
+                .HasColumnName("prioridad");
+            entity.Property(e => e.Estatus)
+                .HasDefaultValue(true)
+                .HasColumnName("estatus");
+
+            entity.HasOne(d => d.IdLugarNavigation).WithMany(p => p.PuntosInteres)
+                .HasForeignKey(d => d.IdLugar)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_PuntosInteres_Lugares");
         });
 
         modelBuilder.Entity<Promocione>(entity =>
         {
-            entity.HasKey(e => e.IdPromocion).HasName("PK__Promocio__811C0F993146511B");
+            entity.HasKey(e => e.IdPromocion).HasName("PK_Promociones");
 
             entity.Property(e => e.IdPromocion).HasColumnName("idPromocion");
             entity.Property(e => e.Descripcion)
@@ -186,10 +260,10 @@ public partial class AppDbContext : DbContext
                 .HasDefaultValue(true)
                 .HasColumnName("estatus");
             entity.Property(e => e.FechaFin)
-                .HasColumnType("datetime")
+                .HasColumnType("timestamp")
                 .HasColumnName("fechaFin");
             entity.Property(e => e.FechaInicio)
-                .HasColumnType("datetime")
+                .HasColumnType("timestamp")
                 .HasColumnName("fechaInicio");
             entity.Property(e => e.IdLugar).HasColumnName("idLugar");
             entity.Property(e => e.IdSocio).HasColumnName("idSocio");
@@ -200,21 +274,21 @@ public partial class AppDbContext : DbContext
             entity.HasOne(d => d.IdLugarNavigation).WithMany(p => p.Promociones)
                 .HasForeignKey(d => d.IdLugar)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__Promocion__idLug__5CD6CB2B");
+                .HasConstraintName("FK_Promociones_Lugares");
 
             entity.HasOne(d => d.IdSocioNavigation).WithMany(p => p.Promociones)
                 .HasForeignKey(d => d.IdSocio)
-                .HasConstraintName("FK__Promocion__idSoc__5DCAEF64");
+                .HasConstraintName("FK_Promociones_Socios");
         });
 
         modelBuilder.Entity<RegistroClic>(entity =>
         {
-            entity.HasKey(e => e.IdClic).HasName("PK__Registro__8207BDA11BF2B473");
+            entity.HasKey(e => e.IdClic).HasName("PK_RegistroClics");
 
             entity.Property(e => e.IdClic).HasColumnName("idClic");
             entity.Property(e => e.FechaClic)
-                .HasDefaultValueSql("(getdate())")
-                .HasColumnType("datetime")
+                .HasDefaultValueSql("NOW()")
+                .HasColumnType("timestamp") 
                 .HasColumnName("fechaClic");
             entity.Property(e => e.IdPromocion).HasColumnName("idPromocion");
             entity.Property(e => e.IdUsuario).HasColumnName("idUsuario");
@@ -222,18 +296,18 @@ public partial class AppDbContext : DbContext
             entity.HasOne(d => d.IdPromocionNavigation).WithMany(p => p.RegistroClics)
                 .HasForeignKey(d => d.IdPromocion)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__RegistroC__idPro__619B8048");
+                .HasConstraintName("FK_RegistroClics_Promociones");
 
             entity.HasOne(d => d.IdUsuarioNavigation).WithMany(p => p.RegistroClics)
                 .HasForeignKey(d => d.IdUsuario)
-                .HasConstraintName("FK__RegistroC__idUsu__628FA481");
+                .HasConstraintName("FK_RegistroClics_Usuarios");
         });
 
         modelBuilder.Entity<Role>(entity =>
         {
-            entity.HasKey(e => e.IdRol).HasName("PK__Roles__3C872F7613E405DC");
+            entity.HasKey(e => e.IdRol).HasName("PK_Roles");
 
-            entity.HasIndex(e => e.NombreRol, "UQ__Roles__2787B00CFB3315C2").IsUnique();
+            entity.HasIndex(e => e.NombreRol, "UQ_Roles_Nombre").IsUnique();
 
             entity.Property(e => e.IdRol).HasColumnName("idRol");
             entity.Property(e => e.NombreRol)
@@ -243,7 +317,7 @@ public partial class AppDbContext : DbContext
 
         modelBuilder.Entity<Ruta>(entity =>
         {
-            entity.HasKey(e => e.IdRuta).HasName("PK__Rutas__E584E6F40CD35E1A");
+            entity.HasKey(e => e.IdRuta).HasName("PK_Rutas");
 
             entity.Property(e => e.IdRuta).HasColumnName("idRuta");
             entity.Property(e => e.Descripcion)
@@ -254,22 +328,37 @@ public partial class AppDbContext : DbContext
                 .HasDefaultValue("Planificada")
                 .HasColumnName("estatus");
             entity.Property(e => e.FechaCreacion)
-                .HasDefaultValueSql("(getdate())")
-                .HasColumnType("datetime")
+                .HasDefaultValueSql("NOW()")
+                .HasColumnType("timestamp")
                 .HasColumnName("fechaCreacion");
             entity.Property(e => e.IdUsuario).HasColumnName("idUsuario");
             entity.Property(e => e.Nombre)
                 .HasMaxLength(150)
                 .HasColumnName("nombre");
 
+            entity.Property(e => e.IdLugarInicio).HasColumnName("idLugarInicio");
+            entity.Property(e => e.IdLugarFin).HasColumnName("idLugarFin");
+
             entity.HasOne(d => d.IdUsuarioNavigation).WithMany(p => p.Ruta)
                 .HasForeignKey(d => d.IdUsuario)
-                .HasConstraintName("FK__Rutas__idUsuario__52593CB8");
+                .HasConstraintName("FK_Rutas_Usuarios");
+
+            entity.HasOne(d => d.IdLugarInicioNavigation)
+                  .WithMany()
+                  .HasForeignKey(d => d.IdLugarInicio)
+                  .OnDelete(DeleteBehavior.ClientSetNull)
+                  .HasConstraintName("FK_Rutas_Lugares_Inicio");
+
+            entity.HasOne(d => d.IdLugarFinNavigation)
+                  .WithMany()
+                  .HasForeignKey(d => d.IdLugarFin)
+                  .OnDelete(DeleteBehavior.ClientSetNull)
+                  .HasConstraintName("FK_Rutas_Lugares_Fin");   
         });
 
         modelBuilder.Entity<RutasLugare>(entity =>
         {
-            entity.HasKey(e => new { e.IdRuta, e.IdLugar }).HasName("PK__Rutas_Lu__0AF086217070BDB7");
+            entity.HasKey(e => new { e.IdRuta, e.IdLugar }).HasName("PK_Rutas_Lugares");
 
             entity.ToTable("Rutas_Lugares");
 
@@ -280,17 +369,17 @@ public partial class AppDbContext : DbContext
             entity.HasOne(d => d.IdLugarNavigation).WithMany(p => p.RutasLugares)
                 .HasForeignKey(d => d.IdLugar)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__Rutas_Lug__idLug__5812160E");
+                .HasConstraintName("FK_RutasLugares_Lugares");
 
             entity.HasOne(d => d.IdRutaNavigation).WithMany(p => p.RutasLugares)
                 .HasForeignKey(d => d.IdRuta)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__Rutas_Lug__idRut__571DF1D5");
+                .HasConstraintName("FK_RutasLugares_Rutas");
         });
 
         modelBuilder.Entity<SociosAfiliado>(entity =>
         {
-            entity.HasKey(e => e.IdSocio).HasName("PK__SociosAf__E19769C170A1B3EC");
+            entity.HasKey(e => e.IdSocio).HasName("PK_SociosAfiliados");
 
             entity.Property(e => e.IdSocio).HasColumnName("idSocio");
             entity.Property(e => e.NombreSocio)
@@ -303,12 +392,12 @@ public partial class AppDbContext : DbContext
 
         modelBuilder.Entity<Token>(entity =>
         {
-            entity.HasKey(e => e.IdToken).HasName("PK__Tokens__FEFE350DB6D42ABE");
+            entity.HasKey(e => e.IdToken).HasName("PK_Tokens");
 
             entity.Property(e => e.IdToken).HasColumnName("idToken");
             entity.Property(e => e.FechaRegistro)
-                .HasDefaultValueSql("(getdate())")
-                .HasColumnType("datetime")
+                .HasDefaultValueSql("NOW()")
+                .HasColumnType("timestamp")
                 .HasColumnName("fechaRegistro");
             entity.Property(e => e.IdUsuario).HasColumnName("idUsuario");
             entity.Property(e => e.Tipo)
@@ -320,16 +409,16 @@ public partial class AppDbContext : DbContext
 
             entity.HasOne(d => d.IdUsuarioNavigation).WithMany(p => p.Tokens)
                 .HasForeignKey(d => d.IdUsuario)
-                .HasConstraintName("FK__Tokens__idUsuari__45F365D3");
+                .HasConstraintName("FK_Tokens_Usuarios");
         });
 
         modelBuilder.Entity<UsoDigital>(entity =>
         {
-            entity.HasKey(e => e.IdUsoDigital).HasName("PK__UsoDigit__E4A8417734A33016");
+            entity.HasKey(e => e.IdUsoDigital).HasName("PK_UsoDigital");
 
             entity.ToTable("UsoDigital");
 
-            entity.HasIndex(e => e.FechaRegistro, "UQ__UsoDigit__D7F4BC9983B16C00").IsUnique();
+            entity.HasIndex(e => e.FechaRegistro, "UQ_UsoDigital_Fecha").IsUnique();
 
             entity.Property(e => e.IdUsoDigital).HasColumnName("idUsoDigital");
             entity.Property(e => e.FechaRegistro).HasColumnName("fechaRegistro");
@@ -338,14 +427,14 @@ public partial class AppDbContext : DbContext
 
             entity.HasOne(d => d.IdUsuarioNavigation).WithMany(p => p.UsoDigitals)
                 .HasForeignKey(d => d.IdUsuario)
-                .HasConstraintName("FK__UsoDigita__idUsu__6754599E");
+                .HasConstraintName("FK_UsoDigital_Usuarios");
         });
 
         modelBuilder.Entity<Usuario>(entity =>
         {
-            entity.HasKey(e => e.IdUsuario).HasName("PK__Usuarios__645723A6B9C4D14F");
+            entity.HasKey(e => e.IdUsuario).HasName("PK_Usuarios");
 
-            entity.HasIndex(e => e.Correo, "UQ__Usuarios__2A586E0B2CC327DD").IsUnique();
+            entity.HasIndex(e => e.Correo, "UQ_Usuarios_Correo").IsUnique();
 
             entity.Property(e => e.IdUsuario).HasColumnName("idUsuario");
             entity.Property(e => e.Apellido)
@@ -361,11 +450,11 @@ public partial class AppDbContext : DbContext
                 .HasDefaultValue(true)
                 .HasColumnName("estatus");
             entity.Property(e => e.FechaRegistro)
-                .HasDefaultValueSql("(getdate())")
-                .HasColumnType("datetime")
+                .HasDefaultValueSql("NOW()")
+                .HasColumnType("timestamp")
                 .HasColumnName("fechaRegistro");
             entity.Property(e => e.FotoPerfil)
-                .HasMaxLength(255)
+                .HasColumnType("text")
                 .HasColumnName("fotoPerfil");
             entity.Property(e => e.IdRol).HasColumnName("idRol");
             entity.Property(e => e.Nombre)
@@ -375,7 +464,7 @@ public partial class AppDbContext : DbContext
             entity.HasOne(d => d.IdRolNavigation).WithMany(p => p.Usuarios)
                 .HasForeignKey(d => d.IdRol)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__Usuarios__idRol__3B75D760");
+                .HasConstraintName("FK_Usuarios_Roles");
 
             entity.HasMany(d => d.IdInteres).WithMany(p => p.IdUsuarios)
                 .UsingEntity<Dictionary<string, object>>(
@@ -383,14 +472,14 @@ public partial class AppDbContext : DbContext
                     r => r.HasOne<Interese>().WithMany()
                         .HasForeignKey("IdInteres")
                         .OnDelete(DeleteBehavior.ClientSetNull)
-                        .HasConstraintName("FK__Usuarios___idInt__4316F928"),
+                        .HasConstraintName("FK_UsuariosIntereses_Intereses"),
                     l => l.HasOne<Usuario>().WithMany()
                         .HasForeignKey("IdUsuario")
                         .OnDelete(DeleteBehavior.ClientSetNull)
-                        .HasConstraintName("FK__Usuarios___idUsu__4222D4EF"),
+                        .HasConstraintName("FK_UsuariosIntereses_Usuarios"),
                     j =>
                     {
-                        j.HasKey("IdUsuario", "IdInteres").HasName("PK__Usuarios__2207EE4FE5A700C6");
+                        j.HasKey("IdUsuario", "IdInteres").HasName("PK_Usuarios_Intereses");
                         j.ToTable("Usuarios_Intereses");
                         j.IndexerProperty<int>("IdUsuario").HasColumnName("idUsuario");
                         j.IndexerProperty<int>("IdInteres").HasColumnName("idInteres");

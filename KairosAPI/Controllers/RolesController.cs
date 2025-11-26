@@ -51,10 +51,26 @@ namespace KairosAPI.Controllers
         public async Task<IActionResult> DeleteRol(int id)
         {
             var rol = await _context.Roles.FindAsync(id);
-            if (rol == null) return NotFound();
+            if (rol == null)
+            {
+                return NotFound();
+            }
+
             _context.Roles.Remove(rol);
-            await _context.SaveChangesAsync();
-            return NoContent();
+
+            try
+            {
+                await _context.SaveChangesAsync();
+                return NoContent();
+            }
+            catch (DbUpdateException)
+            {
+                return Conflict("No se puede eliminar el rol porque está siendo utilizado por uno o más usuarios. Por favor, reasigne o elimine los usuarios asociados primero.");
+            }
+            catch (Exception)
+            {
+                return StatusCode(500, "Ocurrió un error inesperado al intentar guardar los cambios.");
+            }
         }
     }
 }

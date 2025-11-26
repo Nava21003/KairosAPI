@@ -1,5 +1,9 @@
-# Básico de Visual Studio
 *.suo
 *.user
 *.userosscache
 *.sln.docstates
+bin/
+obj/
+.vs/
+.git/
+*.user

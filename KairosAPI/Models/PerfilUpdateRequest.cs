@@ -13,6 +13,6 @@ public class PerfilUpdateRequest
     [MaxLength(150)]
     public string? Correo { get; set; }
 
-    [MaxLength(255)]
+    // Sin MaxLength porque las imágenes Base64 pueden ser muy largas
     public string? FotoPerfil { get; set; }
 }

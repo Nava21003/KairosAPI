@@ -55,15 +55,11 @@ namespace KairosAPI.Controllers
             });
         }
 
-        // --------------------------
-        // REGISTRO (con JsonElement)
-        // --------------------------
         [HttpPost("register")]
         [IgnoreAntiforgeryToken]
         [Consumes("application/json")]
         public async Task<IActionResult> Register([FromBody] JsonElement rawUser)
         {
-            // ✅ Parseamos el JSON manualmente
             if (rawUser.ValueKind == JsonValueKind.Undefined || rawUser.ValueKind == JsonValueKind.Null)
                 return BadRequest(new { success = false, message = "El cuerpo de la solicitud está vacío." });
 
@@ -72,6 +68,7 @@ namespace KairosAPI.Controllers
             string correo = rawUser.GetProperty("correo").GetString() ?? "";
             string contrasena = rawUser.GetProperty("contrasena").GetString() ?? "";
             string fotoPerfil = rawUser.TryGetProperty("fotoPerfil", out var fp) ? fp.GetString() ?? "" : "";
+            int idRol = rawUser.TryGetProperty("idRol", out var rolElement) ? rolElement.GetInt32() : 2;
 
             if (string.IsNullOrEmpty(correo) || string.IsNullOrEmpty(contrasena))
                 return BadRequest(new { success = false, message = "Correo y contraseña son obligatorios." });
@@ -79,7 +76,6 @@ namespace KairosAPI.Controllers
             if (await _context.Usuarios.AnyAsync(u => u.Correo == correo))
                 return Conflict(new { success = false, message = "El correo ya está registrado" });
 
-            // ✅ Crear el usuario
             var nuevo = new Usuario
             {
                 Nombre = nombre,
@@ -87,7 +83,8 @@ namespace KairosAPI.Controllers
                 Correo = correo,
                 Contrasena = BCrypt.Net.BCrypt.HashPassword(contrasena),
                 FotoPerfil = fotoPerfil,
-                IdRol = 2, // Usuario normal
+                IdRol = idRol,
+
                 FechaRegistro = DateTime.Now,
                 Estatus = true
             };
@@ -95,7 +92,6 @@ namespace KairosAPI.Controllers
             _context.Usuarios.Add(nuevo);
             await _context.SaveChangesAsync();
 
-            // ✅ Generar JWT
             var token = GenerateJwtToken(nuevo);
 
             return Ok(new
@@ -105,11 +101,12 @@ namespace KairosAPI.Controllers
                 token,
                 user = new
                 {
-                    idUsuario = nuevo.IdUsuario,  // ← CORREGIDO: Android espera minúscula
+                    id = nuevo.IdUsuario,
                     nombre = nuevo.Nombre,
                     apellido = nuevo.Apellido,
                     correo = nuevo.Correo,
-                    fotoPerfil = nuevo.FotoPerfil
+                    fotoPerfil = nuevo.FotoPerfil,
+                    idRol = nuevo.IdRol
                 }
             });
         }
@@ -144,10 +141,9 @@ namespace KairosAPI.Controllers
         }
     }
 
-    // Modelo de petición de login
     public class LoginRequest
     {
-        public string Correo { get; set; }
-        public string Contrasena { get; set; }
+        public string? Correo { get; set; }
+        public string? Contrasena { get; set; }
     }
 }

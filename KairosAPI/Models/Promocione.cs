@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace KairosAPI.Models;
+﻿namespace KairosAPI.Models;
 
 public partial class Promocione
 {
@@ -15,13 +12,16 @@ public partial class Promocione
 
     public string? Descripcion { get; set; }
 
+    public string? Imagen { get; set; }
+
     public DateTime FechaInicio { get; set; }
 
     public DateTime FechaFin { get; set; }
 
     public bool? Estatus { get; set; }
 
-    public virtual Lugare IdLugarNavigation { get; set; } = null!;
+    [System.Text.Json.Serialization.JsonIgnore]
+    public virtual Lugare? IdLugarNavigation { get; set; }
 
     public virtual SociosAfiliado? IdSocioNavigation { get; set; }
 

@@ -7,7 +7,6 @@ namespace KairosAPI.Models
         public int IdRol { get; set; }
         public string NombreRol { get; set; } = null!;
 
-        // 🔗 Usuarios asociados a este rol
         public virtual ICollection<Usuario> Usuarios { get; set; } = new List<Usuario>();
     }
 }
