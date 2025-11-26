@@ -16,6 +16,7 @@ namespace KairosAPI.Controllers
             _context = context;
         }
 
+        // GET: api/Promociones
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Promocione>>> GetPromociones()
         {
@@ -24,6 +25,7 @@ namespace KairosAPI.Controllers
                 .ToListAsync();
         }
 
+        // GET: api/Promociones/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Promocione>> GetPromocion(int id)
         {
@@ -35,23 +37,28 @@ namespace KairosAPI.Controllers
             return promo;
         }
 
+        // POST: api/Promociones
         [HttpPost]
         public async Task<ActionResult<Promocione>> PostPromocion(Promocione promocion)
         {
+            // Entity Framework ahora guardará también el campo 'Imagen' si viene en el objeto
             _context.Promociones.Add(promocion);
             await _context.SaveChangesAsync();
             return CreatedAtAction(nameof(GetPromocion), new { id = promocion.IdPromocion }, promocion);
         }
 
+        // PUT: api/Promociones/5
         [HttpPut("{id}")]
         public async Task<IActionResult> PutPromocion(int id, Promocione promocion)
         {
             if (id != promocion.IdPromocion) return BadRequest();
+
             _context.Entry(promocion).State = EntityState.Modified;
             await _context.SaveChangesAsync();
             return NoContent();
         }
 
+        // DELETE: api/Promociones/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeletePromocion(int id)
         {

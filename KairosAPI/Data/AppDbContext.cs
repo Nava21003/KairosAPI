@@ -24,7 +24,13 @@ public partial class AppDbContext : DbContext
 
     public virtual DbSet<Lugare> Lugares { get; set; }
 
+    // === NUEVO: Tabla de Mensajes ===
+    public virtual DbSet<MensajesContacto> MensajesContactos { get; set; }
+
     public virtual DbSet<Notificacione> Notificaciones { get; set; }
+
+    // === NUEVO: Tabla de FAQ ===
+    public virtual DbSet<PreguntasFrecuentes> PreguntasFrecuentes { get; set; }
 
     public virtual DbSet<Promocione> Promociones { get; set; }
 
@@ -152,6 +158,34 @@ public partial class AppDbContext : DbContext
                 .HasConstraintName("FK__Lugares__idCateg__4D94879B");
         });
 
+        // === NUEVO: Configuración de MensajesContacto ===
+        modelBuilder.Entity<MensajesContacto>(entity =>
+        {
+            entity.HasKey(e => e.IdMensaje);
+            entity.ToTable("MensajesContacto");
+
+            entity.Property(e => e.IdMensaje).HasColumnName("idMensaje");
+            entity.Property(e => e.Nombre)
+                .HasMaxLength(150)
+                .HasColumnName("nombre");
+            entity.Property(e => e.Correo)
+                .HasMaxLength(150)
+                .HasColumnName("correo");
+            entity.Property(e => e.Asunto)
+                .HasMaxLength(100)
+                .HasColumnName("asunto");
+            entity.Property(e => e.Mensaje)
+                .HasColumnName("mensaje");
+            entity.Property(e => e.FechaEnvio)
+                .HasDefaultValueSql("(getdate())")
+                .HasColumnType("datetime")
+                .HasColumnName("fechaEnvio");
+            entity.Property(e => e.Estatus)
+                .HasMaxLength(50)
+                .HasDefaultValue("Pendiente")
+                .HasColumnName("estatus");
+        });
+
         modelBuilder.Entity<Notificacione>(entity =>
         {
             entity.HasKey(e => e.IdNotificacion).HasName("PK__Notifica__AFE1D7E4EE19D0AF");
@@ -175,6 +209,30 @@ public partial class AppDbContext : DbContext
             entity.HasOne(d => d.IdUsuarioNavigation).WithMany(p => p.Notificaciones)
                 .HasForeignKey(d => d.IdUsuario)
                 .HasConstraintName("FK__Notificac__idUsu__6E01572D");
+        });
+
+        // === NUEVO: Configuración de PreguntasFrecuentes ===
+        modelBuilder.Entity<PreguntasFrecuentes>(entity =>
+        {
+            entity.HasKey(e => e.IdPregunta);
+            entity.ToTable("PreguntasFrecuentes");
+
+            entity.Property(e => e.IdPregunta).HasColumnName("idPregunta");
+            entity.Property(e => e.Pregunta)
+                .HasMaxLength(255)
+                .HasColumnName("pregunta");
+            entity.Property(e => e.Respuesta)
+                .HasColumnName("respuesta");
+            entity.Property(e => e.Categoria)
+                .HasMaxLength(100)
+                .HasDefaultValue("General")
+                .HasColumnName("categoria");
+            entity.Property(e => e.Orden)
+                .HasDefaultValue(0)
+                .HasColumnName("orden");
+            entity.Property(e => e.Estatus)
+                .HasDefaultValue(true)
+                .HasColumnName("estatus");
         });
 
         modelBuilder.Entity<PuntoInteres>(entity =>
@@ -271,9 +329,6 @@ public partial class AppDbContext : DbContext
                 .HasColumnName("nombreRol");
         });
 
-        // -----------------------------------------------------------------------
-        // AQUI ESTA LA CORRECCION PRINCIPAL PARA LA ENTIDAD RUTA
-        // -----------------------------------------------------------------------
         modelBuilder.Entity<Ruta>(entity =>
         {
             entity.HasKey(e => e.IdRuta).HasName("PK__Rutas__E584E6F40CD35E1A");
@@ -295,7 +350,6 @@ public partial class AppDbContext : DbContext
                 .HasMaxLength(150)
                 .HasColumnName("nombre");
 
-            // Mapeo explicito de las columnas para los lugares (Importante para evitar errores)
             entity.Property(e => e.IdLugarInicio).HasColumnName("idLugarInicio");
             entity.Property(e => e.IdLugarFin).HasColumnName("idLugarFin");
 
@@ -303,14 +357,12 @@ public partial class AppDbContext : DbContext
                 .HasForeignKey(d => d.IdUsuario)
                 .HasConstraintName("FK__Rutas__idUsuario__52593CB8");
 
-            // Configuración explicita para LugarInicio
             entity.HasOne(d => d.IdLugarInicioNavigation)
-                  .WithMany() // Lugare no tiene una lista inversa explicita, se deja vacio
+                  .WithMany()
                   .HasForeignKey(d => d.IdLugarInicio)
                   .OnDelete(DeleteBehavior.ClientSetNull)
                   .HasConstraintName("FK_Rutas_Lugares_Inicio");
 
-            // Configuración explicita para LugarFin
             entity.HasOne(d => d.IdLugarFinNavigation)
                   .WithMany()
                   .HasForeignKey(d => d.IdLugarFin)
