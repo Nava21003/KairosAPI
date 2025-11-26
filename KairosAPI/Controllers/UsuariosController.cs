@@ -41,12 +41,39 @@ namespace KairosAPI.Controllers
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutUsuario(int id, Usuario usuario)
+        public async Task<IActionResult> PutUsuario(int id, [FromBody] PerfilUpdateRequest request)
         {
-            if (id != usuario.IdUsuario) return BadRequest();
-            _context.Entry(usuario).State = EntityState.Modified;
+            var usuario = await _context.Usuarios.FindAsync(id);
+            if (usuario == null) return NotFound(new { message = "Usuario no encontrado" });
+
+            // Actualizar solo los campos que vienen en el request
+            if (!string.IsNullOrEmpty(request.Nombre))
+                usuario.Nombre = request.Nombre;
+
+            if (!string.IsNullOrEmpty(request.Apellido))
+                usuario.Apellido = request.Apellido;
+
+            if (!string.IsNullOrEmpty(request.Correo))
+                usuario.Correo = request.Correo;
+
+            if (!string.IsNullOrEmpty(request.FotoPerfil))
+                usuario.FotoPerfil = request.FotoPerfil;
+
             await _context.SaveChangesAsync();
-            return NoContent();
+
+            return Ok(new
+            {
+                success = true,
+                message = "Perfil actualizado correctamente",
+                user = new
+                {
+                    idUsuario = usuario.IdUsuario,
+                    nombre = usuario.Nombre,
+                    apellido = usuario.Apellido,
+                    correo = usuario.Correo,
+                    fotoPerfil = usuario.FotoPerfil
+                }
+            });
         }
 
         [HttpPatch("{id}/estatus")]

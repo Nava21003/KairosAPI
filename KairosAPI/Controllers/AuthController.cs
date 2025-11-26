@@ -45,11 +45,12 @@ namespace KairosAPI.Controllers
                 token,
                 user = new
                 {
-                    user.IdUsuario,
-                    user.Nombre,
-                    user.Apellido,
-                    user.Correo,
-                    Rol = user.IdRolNavigation?.NombreRol
+                    idUsuario = user.IdUsuario,  // ← CORREGIDO: Android espera minúscula
+                    nombre = user.Nombre,
+                    apellido = user.Apellido,
+                    correo = user.Correo,
+                    fotoPerfil = user.FotoPerfil,
+                    rol = user.IdRolNavigation?.NombreRol
                 }
             });
         }
@@ -104,10 +105,11 @@ namespace KairosAPI.Controllers
                 token,
                 user = new
                 {
-                    nuevo.IdUsuario,
-                    nuevo.Nombre,
-                    nuevo.Apellido,
-                    nuevo.Correo
+                    idUsuario = nuevo.IdUsuario,  // ← CORREGIDO: Android espera minúscula
+                    nombre = nuevo.Nombre,
+                    apellido = nuevo.Apellido,
+                    correo = nuevo.Correo,
+                    fotoPerfil = nuevo.FotoPerfil
                 }
             });
         }
