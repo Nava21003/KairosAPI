@@ -63,14 +63,15 @@ namespace KairosAPI.Controllers
                 await _context.SaveChangesAsync();
                 return NoContent();
             }
-            catch (DbUpdateException)
+            catch (DbUpdateException ex) when (ex.InnerException is Microsoft.Data.SqlClient.SqlException sqlEx && sqlEx.Number == 547)
             {
                 return Conflict("No se puede eliminar el rol porque está siendo utilizado por uno o más usuarios. Por favor, reasigne o elimine los usuarios asociados primero.");
             }
-            catch (Exception)
+            catch (DbUpdateException ex)
             {
                 return StatusCode(500, "Ocurrió un error inesperado al intentar guardar los cambios.");
             }
         }
+
     }
 }

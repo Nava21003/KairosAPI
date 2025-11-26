@@ -8,11 +8,9 @@ using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 
-AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
-
 // CONFIGURACIÓN DE SERVICIOS
 
-builder.Services.AddCors(); 
+builder.Services.AddCors();
 
 builder.Services.AddControllers().AddJsonOptions(x =>
 {
@@ -20,11 +18,10 @@ builder.Services.AddControllers().AddJsonOptions(x =>
     x.JsonSerializerOptions.DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull;
 });
 
-// CONFIGURACIÓN DE BASE DE DATOS (POSTGRES)
+// CONFIGURACIÓN DE BASE DE DATOS (SQL SERVER)
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 
-builder.Services.AddDbContext<AppDbContext>(options =>
-    options.UseNpgsql(connectionString));   
+builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlServer(connectionString));
 
 // Configuración de JWT
 var jwtSettings = builder.Configuration.GetSection("JwtSettings");

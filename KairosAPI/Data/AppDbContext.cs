@@ -15,41 +15,23 @@ public partial class AppDbContext : DbContext
         : base(options)
     {
     }
-
     public virtual DbSet<Actividades> Actividades { get; set; }
-
     public virtual DbSet<Categoria> Categorias { get; set; }
-
     public virtual DbSet<Interese> Intereses { get; set; }
-
     public virtual DbSet<Lugare> Lugares { get; set; }
-
     public virtual DbSet<MensajesContacto> MensajesContactos { get; set; }
-
     public virtual DbSet<Notificacione> Notificaciones { get; set; }
-
     public virtual DbSet<PreguntasFrecuentes> PreguntasFrecuentes { get; set; }
-
     public virtual DbSet<Promocione> Promociones { get; set; }
-
     public virtual DbSet<PuntoInteres> PuntosInteres { get; set; }
-
     public virtual DbSet<RegistroClic> RegistroClics { get; set; }
-
     public virtual DbSet<Role> Roles { get; set; }
-
     public virtual DbSet<Ruta> Rutas { get; set; }
-
     public virtual DbSet<RutasLugare> RutasLugares { get; set; }
-
     public virtual DbSet<SociosAfiliado> SociosAfiliados { get; set; }
-
     public virtual DbSet<Token> Tokens { get; set; }
-
     public virtual DbSet<UsoDigital> UsoDigitals { get; set; }
-
     public virtual DbSet<Usuario> Usuarios { get; set; }
-
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -66,10 +48,10 @@ public partial class AppDbContext : DbContext
                 .HasColumnType("decimal(10, 2)")
                 .HasColumnName("distancia");
             entity.Property(e => e.FechaFin)
-                .HasColumnType("timestamp")
+                .HasColumnType("datetime") // Cambio a datetime
                 .HasColumnName("fechaFin");
             entity.Property(e => e.FechaInicio)
-                .HasColumnType("timestamp")
+                .HasColumnType("datetime") // Cambio a datetime
                 .HasColumnName("fechaInicio");
             entity.Property(e => e.IdLugar).HasColumnName("idLugar");
             entity.Property(e => e.IdUsuario).HasColumnName("idUsuario");
@@ -87,13 +69,18 @@ public partial class AppDbContext : DbContext
         modelBuilder.Entity<Categoria>(entity =>
         {
             entity.HasKey(e => e.IdCategoria).HasName("PK_Categorias");
-
             entity.HasIndex(e => e.Nombre, "UQ_Categorias_Nombre").IsUnique();
 
             entity.Property(e => e.IdCategoria).HasColumnName("idCategoria");
             entity.Property(e => e.Nombre)
                 .HasMaxLength(100)
                 .HasColumnName("nombre");
+            entity.Property(e => e.Descripcion)
+                .HasMaxLength(255)
+                .HasColumnName("descripcion");
+            entity.Property(e => e.Estatus)
+                 .HasDefaultValue(true)
+                 .HasColumnName("estatus");
         });
 
         modelBuilder.Entity<Interese>(entity =>
@@ -120,7 +107,9 @@ public partial class AppDbContext : DbContext
             entity.Property(e => e.Direccion)
                 .HasMaxLength(255)
                 .HasColumnName("direccion");
-            entity.Property(e => e.EsPatrocinado).HasDefaultValue(false);
+            entity.Property(e => e.EsPatrocinado)
+                .HasDefaultValue(false)
+                .HasColumnName("EsPatrocinado");
             entity.Property(e => e.Estatus)
                 .HasDefaultValue(true)
                 .HasColumnName("estatus");
@@ -129,7 +118,7 @@ public partial class AppDbContext : DbContext
                 .HasColumnName("horario");
             entity.Property(e => e.IdCategoria).HasColumnName("idCategoria");
             entity.Property(e => e.Imagen)
-                .HasColumnType("text")
+                .IsUnicode(false) // VARCHAR(MAX) en lugar de NVARCHAR
                 .HasColumnName("imagen");
             entity.Property(e => e.Latitud)
                 .HasColumnType("decimal(10, 6)")
@@ -164,8 +153,8 @@ public partial class AppDbContext : DbContext
             entity.Property(e => e.Mensaje)
                 .HasColumnName("mensaje");
             entity.Property(e => e.FechaEnvio)
-                .HasDefaultValueSql("NOW()")
-                .HasColumnType("timestamp")
+                .HasDefaultValueSql("GETDATE()") // Cambio a GETDATE()
+                .HasColumnType("datetime")
                 .HasColumnName("fechaEnvio");
             entity.Property(e => e.Estatus)
                 .HasMaxLength(50)
@@ -179,8 +168,8 @@ public partial class AppDbContext : DbContext
 
             entity.Property(e => e.IdNotificacion).HasColumnName("idNotificacion");
             entity.Property(e => e.FechaEnvio)
-                .HasDefaultValueSql("NOW()")
-                .HasColumnType("timestamp")
+                .HasDefaultValueSql("GETDATE()") // Cambio a GETDATE()
+                .HasColumnType("datetime")
                 .HasColumnName("fechaEnvio");
             entity.Property(e => e.IdUsuario).HasColumnName("idUsuario");
             entity.Property(e => e.Leido)
@@ -224,7 +213,6 @@ public partial class AppDbContext : DbContext
         modelBuilder.Entity<PuntoInteres>(entity =>
         {
             entity.HasKey(e => e.IdPunto).HasName("PK_PuntosInteres");
-
             entity.ToTable("PuntosInteres");
 
             entity.Property(e => e.IdPunto).HasColumnName("idPunto");
@@ -254,16 +242,16 @@ public partial class AppDbContext : DbContext
 
             entity.Property(e => e.IdPromocion).HasColumnName("idPromocion");
             entity.Property(e => e.Descripcion)
-                .HasColumnType("text")
+                .HasColumnType("text") // Mantenemos text por tu script SQL
                 .HasColumnName("descripcion");
             entity.Property(e => e.Estatus)
                 .HasDefaultValue(true)
                 .HasColumnName("estatus");
             entity.Property(e => e.FechaFin)
-                .HasColumnType("timestamp")
+                .HasColumnType("datetime")
                 .HasColumnName("fechaFin");
             entity.Property(e => e.FechaInicio)
-                .HasColumnType("timestamp")
+                .HasColumnType("datetime")
                 .HasColumnName("fechaInicio");
             entity.Property(e => e.IdLugar).HasColumnName("idLugar");
             entity.Property(e => e.IdSocio).HasColumnName("idSocio");
@@ -287,8 +275,8 @@ public partial class AppDbContext : DbContext
 
             entity.Property(e => e.IdClic).HasColumnName("idClic");
             entity.Property(e => e.FechaClic)
-                .HasDefaultValueSql("NOW()")
-                .HasColumnType("timestamp") 
+                .HasDefaultValueSql("GETDATE()") // Cambio a GETDATE()
+                .HasColumnType("datetime")
                 .HasColumnName("fechaClic");
             entity.Property(e => e.IdPromocion).HasColumnName("idPromocion");
             entity.Property(e => e.IdUsuario).HasColumnName("idUsuario");
@@ -306,7 +294,6 @@ public partial class AppDbContext : DbContext
         modelBuilder.Entity<Role>(entity =>
         {
             entity.HasKey(e => e.IdRol).HasName("PK_Roles");
-
             entity.HasIndex(e => e.NombreRol, "UQ_Roles_Nombre").IsUnique();
 
             entity.Property(e => e.IdRol).HasColumnName("idRol");
@@ -328,8 +315,8 @@ public partial class AppDbContext : DbContext
                 .HasDefaultValue("Planificada")
                 .HasColumnName("estatus");
             entity.Property(e => e.FechaCreacion)
-                .HasDefaultValueSql("NOW()")
-                .HasColumnType("timestamp")
+                .HasDefaultValueSql("GETDATE()") // Cambio a GETDATE()
+                .HasColumnType("datetime")
                 .HasColumnName("fechaCreacion");
             entity.Property(e => e.IdUsuario).HasColumnName("idUsuario");
             entity.Property(e => e.Nombre)
@@ -353,13 +340,12 @@ public partial class AppDbContext : DbContext
                   .WithMany()
                   .HasForeignKey(d => d.IdLugarFin)
                   .OnDelete(DeleteBehavior.ClientSetNull)
-                  .HasConstraintName("FK_Rutas_Lugares_Fin");   
+                  .HasConstraintName("FK_Rutas_Lugares_Fin");
         });
 
         modelBuilder.Entity<RutasLugare>(entity =>
         {
             entity.HasKey(e => new { e.IdRuta, e.IdLugar }).HasName("PK_Rutas_Lugares");
-
             entity.ToTable("Rutas_Lugares");
 
             entity.Property(e => e.IdRuta).HasColumnName("idRuta");
@@ -388,6 +374,9 @@ public partial class AppDbContext : DbContext
             entity.Property(e => e.TarifaCpc)
                 .HasColumnType("decimal(5, 2)")
                 .HasColumnName("tarifaCPC");
+            entity.Property(e => e.Estatus)
+                .HasDefaultValue(true)
+                .HasColumnName("estatus");
         });
 
         modelBuilder.Entity<Token>(entity =>
@@ -396,8 +385,8 @@ public partial class AppDbContext : DbContext
 
             entity.Property(e => e.IdToken).HasColumnName("idToken");
             entity.Property(e => e.FechaRegistro)
-                .HasDefaultValueSql("NOW()")
-                .HasColumnType("timestamp")
+                .HasDefaultValueSql("GETDATE()") // Cambio a GETDATE()
+                .HasColumnType("datetime")
                 .HasColumnName("fechaRegistro");
             entity.Property(e => e.IdUsuario).HasColumnName("idUsuario");
             entity.Property(e => e.Tipo)
@@ -415,13 +404,15 @@ public partial class AppDbContext : DbContext
         modelBuilder.Entity<UsoDigital>(entity =>
         {
             entity.HasKey(e => e.IdUsoDigital).HasName("PK_UsoDigital");
-
             entity.ToTable("UsoDigital");
 
-            entity.HasIndex(e => e.FechaRegistro, "UQ_UsoDigital_Fecha").IsUnique();
+            // CORREGIDO: Ajustado al Constraint del script SQL Server
+            entity.HasIndex(e => new { e.IdUsuario, e.FechaRegistro }, "UQ_UsoDigital_Usuario_Fecha").IsUnique();
 
             entity.Property(e => e.IdUsoDigital).HasColumnName("idUsoDigital");
-            entity.Property(e => e.FechaRegistro).HasColumnName("fechaRegistro");
+            entity.Property(e => e.FechaRegistro)
+                .HasColumnType("date")
+                .HasColumnName("fechaRegistro");
             entity.Property(e => e.IdUsuario).HasColumnName("idUsuario");
             entity.Property(e => e.TiempoDigitalMinutos).HasColumnName("tiempoDigitalMinutos");
 
@@ -433,7 +424,6 @@ public partial class AppDbContext : DbContext
         modelBuilder.Entity<Usuario>(entity =>
         {
             entity.HasKey(e => e.IdUsuario).HasName("PK_Usuarios");
-
             entity.HasIndex(e => e.Correo, "UQ_Usuarios_Correo").IsUnique();
 
             entity.Property(e => e.IdUsuario).HasColumnName("idUsuario");
@@ -450,11 +440,11 @@ public partial class AppDbContext : DbContext
                 .HasDefaultValue(true)
                 .HasColumnName("estatus");
             entity.Property(e => e.FechaRegistro)
-                .HasDefaultValueSql("NOW()")
-                .HasColumnType("timestamp")
+                .HasDefaultValueSql("GETDATE()") // Cambio a GETDATE()
+                .HasColumnType("datetime")
                 .HasColumnName("fechaRegistro");
             entity.Property(e => e.FotoPerfil)
-                .HasColumnType("text")
+                .IsUnicode(false) // VARCHAR(MAX)
                 .HasColumnName("fotoPerfil");
             entity.Property(e => e.IdRol).HasColumnName("idRol");
             entity.Property(e => e.Nombre)
