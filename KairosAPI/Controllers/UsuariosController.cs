@@ -20,8 +20,6 @@ namespace KairosAPI.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Usuario>>> GetUsuarios()
         {
-            // CORRECCIÓN: Usamos .Select() para proyectar los datos.
-            // Esto crea una copia limpia de los datos sin metadatos "$id" ni ciclos.
             var usuarios = await _context.Usuarios
                 .Select(u => new Usuario
                 {
@@ -35,9 +33,6 @@ namespace KairosAPI.Controllers
                     FotoPerfil = u.FotoPerfil,
                     Estatus = u.Estatus,
 
-                    // Aquí "limpiamos" el Rol.
-                    // Creamos un nuevo objeto Role SOLO con el ID y Nombre.
-                    // Al no incluir la propiedad 'Usuarios' del rol, rompemos el ciclo infinito.
                     IdRolNavigation = u.IdRolNavigation == null ? null : new Role
                     {
                         IdRol = u.IdRolNavigation.IdRol,
@@ -67,7 +62,6 @@ namespace KairosAPI.Controllers
                     FotoPerfil = u.FotoPerfil,
                     Estatus = u.Estatus,
 
-                    // Misma limpieza para el usuario individual
                     IdRolNavigation = u.IdRolNavigation == null ? null : new Role
                     {
                         IdRol = u.IdRolNavigation.IdRol,
@@ -80,10 +74,15 @@ namespace KairosAPI.Controllers
             return usuario;
         }
 
+        // POST: api/Usuarios
         [HttpPost]
         public async Task<ActionResult<Usuario>> PostUsuario(Usuario usuario)
         {
-            // Si la fecha no viene, la asignamos
+            if (string.IsNullOrEmpty(usuario.Contrasena))
+            {
+                return BadRequest("La contraseña es obligatoria para nuevos usuarios.");
+            }
+
             if (usuario.FechaRegistro == null)
             {
                 usuario.FechaRegistro = DateTime.Now;
@@ -92,16 +91,37 @@ namespace KairosAPI.Controllers
             _context.Usuarios.Add(usuario);
             await _context.SaveChangesAsync();
 
-            // Usamos CreatedAtAction para retornar el objeto creado
             return CreatedAtAction(nameof(GetUsuario), new { id = usuario.IdUsuario }, usuario);
         }
 
+        // PUT: api/Usuarios/5
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutUsuario(int id, Usuario usuario)
+        public async Task<IActionResult> PutUsuario(int id, Usuario usuarioEntrante)
         {
-            if (id != usuario.IdUsuario) return BadRequest();
+            if (id != usuarioEntrante.IdUsuario)
+            {
+                return BadRequest("El ID del usuario no coincide.");
+            }
 
-            _context.Entry(usuario).State = EntityState.Modified;
+            var usuarioExistente = await _context.Usuarios.FindAsync(id);
+
+            if (usuarioExistente == null)
+            {
+                return NotFound($"No se encontró el usuario con ID {id}");
+            }
+
+            usuarioExistente.Nombre = usuarioEntrante.Nombre;
+            usuarioExistente.Apellido = usuarioEntrante.Apellido;
+            usuarioExistente.Correo = usuarioEntrante.Correo;
+            usuarioExistente.IdRol = usuarioEntrante.IdRol;
+            usuarioExistente.Estatus = usuarioEntrante.Estatus;
+            usuarioExistente.FotoPerfil = usuarioEntrante.FotoPerfil;
+
+
+            if (!string.IsNullOrEmpty(usuarioEntrante.Contrasena))
+            {
+                usuarioExistente.Contrasena = usuarioEntrante.Contrasena;
+            }
 
             try
             {
@@ -109,13 +129,20 @@ namespace KairosAPI.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!UsuarioExists(id)) return NotFound();
-                else throw;
+                if (!UsuarioExists(id))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
             }
 
-            return NoContent();
+            return Ok(usuarioExistente);
         }
 
+        // PATCH: api/Usuarios/5/estatus
         [HttpPatch("{id}/estatus")]
         public async Task<IActionResult> CambiarEstatus(int id)
         {
@@ -125,10 +152,10 @@ namespace KairosAPI.Controllers
             usuario.Estatus = !usuario.Estatus;
             await _context.SaveChangesAsync();
 
-            // Retornamos el usuario actualizado para que el frontend pueda actualizar el estado localmente si es necesario
             return Ok(usuario);
         }
 
+        // DELETE: api/Usuarios/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteUsuario(int id)
         {

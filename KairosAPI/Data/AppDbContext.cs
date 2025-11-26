@@ -24,12 +24,10 @@ public partial class AppDbContext : DbContext
 
     public virtual DbSet<Lugare> Lugares { get; set; }
 
-    // === NUEVO: Tabla de Mensajes ===
     public virtual DbSet<MensajesContacto> MensajesContactos { get; set; }
 
     public virtual DbSet<Notificacione> Notificaciones { get; set; }
 
-    // === NUEVO: Tabla de FAQ ===
     public virtual DbSet<PreguntasFrecuentes> PreguntasFrecuentes { get; set; }
 
     public virtual DbSet<Promocione> Promociones { get; set; }
@@ -141,7 +139,7 @@ public partial class AppDbContext : DbContext
                 .HasColumnName("horario");
             entity.Property(e => e.IdCategoria).HasColumnName("idCategoria");
             entity.Property(e => e.Imagen)
-                .HasMaxLength(255)
+                .HasColumnType("varchar(MAX)")
                 .HasColumnName("imagen");
             entity.Property(e => e.Latitud)
                 .HasColumnType("decimal(10, 6)")
@@ -468,7 +466,7 @@ public partial class AppDbContext : DbContext
                 .HasColumnType("datetime")
                 .HasColumnName("fechaRegistro");
             entity.Property(e => e.FotoPerfil)
-                .HasMaxLength(255)
+                .HasColumnType("varchar(MAX)")
                 .HasColumnName("fotoPerfil");
             entity.Property(e => e.IdRol).HasColumnName("idRol");
             entity.Property(e => e.Nombre)
