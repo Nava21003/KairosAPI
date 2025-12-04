@@ -34,6 +34,7 @@ public partial class AppDbContext : DbContext
     public virtual DbSet<Token> Tokens { get; set; }
     public virtual DbSet<UsoDigital> UsoDigitals { get; set; }
     public virtual DbSet<Usuario> Usuarios { get; set; }
+    public virtual DbSet<HistorialVisita> HistorialVisitas { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -121,9 +122,35 @@ public partial class AppDbContext : DbContext
             entity.Property(e => e.Latitud).HasColumnType("decimal(10, 6)").HasColumnName("latitud");
             entity.Property(e => e.Longitud).HasColumnType("decimal(10, 6)").HasColumnName("longitud");
             entity.Property(e => e.Nombre).HasMaxLength(150).HasColumnName("nombre");
+            entity.Property(e => e.PuntosOtorgados).HasDefaultValue(10).HasColumnName("puntosOtorgados");
 
             entity.HasOne(d => d.IdCategoriaNavigation).WithMany(p => p.Lugares)
                 .HasForeignKey(d => d.IdCategoria).HasConstraintName("FK_Lugares_Categorias");
+        });
+
+        modelBuilder.Entity<HistorialVisita>(entity =>
+        {
+            entity.HasKey(e => e.IdVisita).HasName("PK_HistorialVisitas");
+            entity.ToTable("HistorialVisitas");
+
+            entity.Property(e => e.IdVisita).HasColumnName("idVisita");
+            entity.Property(e => e.IdUsuario).HasColumnName("idUsuario");
+            entity.Property(e => e.IdLugar).HasColumnName("idLugar");
+            entity.Property(e => e.PuntosGanados).HasColumnName("puntosGanados");
+            entity.Property(e => e.FechaVisita)
+                .HasDefaultValueSql("GETDATE()")
+                .HasColumnType("datetime")
+                .HasColumnName("fechaVisita");
+
+            entity.HasOne(d => d.IdLugarNavigation).WithMany()
+                .HasForeignKey(d => d.IdLugar)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_HistorialVisitas_Lugares");
+
+            entity.HasOne(d => d.IdUsuarioNavigation).WithMany()
+                .HasForeignKey(d => d.IdUsuario)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_HistorialVisitas_Usuarios");
         });
 
         modelBuilder.Entity<MensajesContacto>(entity =>

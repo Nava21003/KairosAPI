@@ -23,6 +23,8 @@ public partial class Lugare
 
     public string? Imagen { get; set; }
 
+    public int? PuntosOtorgados { get; set; }
+
     public bool? EsPatrocinado { get; set; }
 
     public bool? Estatus { get; set; }
@@ -36,4 +38,6 @@ public partial class Lugare
     public virtual ICollection<RutasLugare> RutasLugares { get; set; } = new List<RutasLugare>();
 
     public virtual ICollection<PuntoInteres> PuntosInteres { get; set; } = new List<PuntoInteres>();
+
+    public virtual ICollection<HistorialVisita> HistorialVisitas { get; set; } = new List<HistorialVisita>();
 }
