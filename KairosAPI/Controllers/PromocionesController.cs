@@ -67,5 +67,53 @@ namespace KairosAPI.Controllers
             await _context.SaveChangesAsync();
             return NoContent();
         }
+
+        // REGISTRAR CLIC (O CANJE)
+        [HttpPost("registrar-clic")]
+        public async Task<IActionResult> RegistrarClic([FromBody] ClicDto request)
+        {
+            if (request == null) return BadRequest("Datos inválidos");
+
+            var promocion = await _context.Promociones.FindAsync(request.IdPromocion);
+            if (promocion == null)
+            {
+                return NotFound("La promoción no existe.");
+            }
+
+            var nuevoClic = new RegistroClic
+            {
+                IdPromocion = request.IdPromocion,
+                IdUsuario = request.IdUsuario,
+                FechaClic = DateTime.Now
+            };
+
+            _context.RegistroClics.Add(nuevoClic);
+            await _context.SaveChangesAsync();
+
+            return Ok(new { mensaje = "Clic registrado exitosamente (Ganancia contabilizada)" });
+        }
+
+        // GET: api/Promociones/con-ganancias
+        [HttpGet("con-ganancias")]
+        public async Task<ActionResult<IEnumerable<object>>> GetPromocionesConGanancias()
+        {
+            var resultado = await _context.Promociones
+                .Include(p => p.IdSocioNavigation)
+                .Include(p => p.IdLugarNavigation)
+                .Select(p => new
+                {
+                    IdPromocion = p.IdPromocion,
+                    Titulo = p.Titulo,
+                    Imagen = p.Imagen,
+                    FechaInicio = p.FechaInicio,
+                    PuntosRequeridos = p.PuntosRequeridos,
+                    NombreSocio = p.IdSocioNavigation != null ? p.IdSocioNavigation.NombreSocio : "Sin Socio",
+                    TarifaCPC = p.IdSocioNavigation != null ? p.IdSocioNavigation.TarifaCpc : 0,
+                    TotalClics = _context.RegistroClics.Count(rc => rc.IdPromocion == p.IdPromocion)
+                })
+                .ToListAsync();
+
+            return Ok(resultado);
+        }
     }
 }

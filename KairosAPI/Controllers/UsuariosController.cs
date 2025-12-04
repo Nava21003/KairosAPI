@@ -31,6 +31,8 @@ namespace KairosAPI.Controllers
                     Contrasena = u.Contrasena,
                     FechaRegistro = u.FechaRegistro,
                     FotoPerfil = u.FotoPerfil,
+                    // Mapeo del nuevo campo
+                    PuntosAcumulados = u.PuntosAcumulados,
                     Estatus = u.Estatus,
 
                     IdRolNavigation = u.IdRolNavigation == null ? null : new Role
@@ -60,6 +62,8 @@ namespace KairosAPI.Controllers
                     Contrasena = u.Contrasena,
                     FechaRegistro = u.FechaRegistro,
                     FotoPerfil = u.FotoPerfil,
+                    // Mapeo del nuevo campo
+                    PuntosAcumulados = u.PuntosAcumulados,
                     Estatus = u.Estatus,
 
                     IdRolNavigation = u.IdRolNavigation == null ? null : new Role
@@ -86,6 +90,12 @@ namespace KairosAPI.Controllers
             if (usuario.FechaRegistro == null)
             {
                 usuario.FechaRegistro = DateTime.Now;
+            }
+
+            // Si no se envían puntos, inicializar en 0 (opcional, ya lo hace la BD por default)
+            if (usuario.PuntosAcumulados == null)
+            {
+                usuario.PuntosAcumulados = 0;
             }
 
             _context.Usuarios.Add(usuario);
@@ -117,6 +127,8 @@ namespace KairosAPI.Controllers
             usuarioExistente.Estatus = usuarioEntrante.Estatus;
             usuarioExistente.FotoPerfil = usuarioEntrante.FotoPerfil;
 
+            // Actualización del nuevo campo
+            usuarioExistente.PuntosAcumulados = usuarioEntrante.PuntosAcumulados;
 
             if (!string.IsNullOrEmpty(usuarioEntrante.Contrasena))
             {

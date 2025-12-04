@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text.Json.Serialization;
 
 namespace KairosAPI.Models;
 
@@ -11,7 +12,9 @@ public partial class RutasLugare
 
     public int? Orden { get; set; }
 
-    public virtual Lugare IdLugarNavigation { get; set; } = null!;
+    [JsonIgnore]
+    public virtual Lugare? IdLugarNavigation { get; set; }
 
-    public virtual Ruta IdRutaNavigation { get; set; } = null!;
+    [JsonIgnore]
+    public virtual Ruta? IdRutaNavigation { get; set; }
 }

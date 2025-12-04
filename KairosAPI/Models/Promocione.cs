@@ -14,6 +14,8 @@ public partial class Promocione
 
     public string? Imagen { get; set; }
 
+    public int? PuntosRequeridos { get; set; }
+
     public DateTime FechaInicio { get; set; }
 
     public DateTime FechaFin { get; set; }

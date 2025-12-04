@@ -33,4 +33,5 @@ public partial class Ruta
     public virtual Lugare? IdLugarFinNavigation { get; set; }
 
     public virtual ICollection<RutasLugare> RutasLugares { get; set; } = new List<RutasLugare>();
+
 }

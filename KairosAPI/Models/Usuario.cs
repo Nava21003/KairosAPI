@@ -13,6 +13,7 @@ namespace KairosAPI.Models
         public string? Contrasena { get; set; }
         public DateTime? FechaRegistro { get; set; }
         public string? FotoPerfil { get; set; }
+        public int? PuntosAcumulados { get; set; }
         public bool Estatus { get; set; }
 
         public virtual Role? IdRolNavigation { get; set; }
